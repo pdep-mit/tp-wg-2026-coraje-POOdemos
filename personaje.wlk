@@ -2,7 +2,9 @@ import wollok.game.*
 
 class Personaje {
 	var property position = game.origin()
-	
+	var frameActual = 0
+    const maxFrames = 4
+
 	var etapaCiclo = 0
 	const maxetapaCiclo = 11
 
@@ -13,12 +15,6 @@ class Personaje {
 
 	method image() = "personajes/"+sujeto+"/"+velocidad+"/"+mirandoHacia+"/"+etapaCiclo+".png"
 
-	
-	method cambiarMovimiento(){
-		if (etapaCiclo != maxetapaCiclo)
-			etapaCiclo += 1
-		else etapaCiclo = 1
-	}
 
 	method mirarHacia(direccion){
 		mirandoHacia = direccion
@@ -31,6 +27,17 @@ class Personaje {
 	method velocidadMovimiento(valor){
 		velocidad = valor
 	}
+
+	method cambiarFrame() {
+        frameActual = (frameActual + 1) % maxFrames
+        
+		if (etapaCiclo != maxetapaCiclo)
+			etapaCiclo += 1
+		else etapaCiclo = 1
+    }
+
+	
+
 }
 
 

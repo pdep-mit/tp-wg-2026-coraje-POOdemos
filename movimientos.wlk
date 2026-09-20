@@ -12,7 +12,7 @@ object movimiento {
 object haciaArriba {
 	method posicionSiguiente(personaje,posicion) {
 		personaje.mirarHacia("Arriba")
-		if (posicion.y() < game.height()-1){
+		if (posicion.y() < config.alturaMaxima()-1){
 			return posicion.up(1)
 		} 
 		else return posicion.up(0)
@@ -32,7 +32,7 @@ object haciaAbajo {
 object haciaLaDerecha {
 	method posicionSiguiente(personaje,posicion){
 		personaje.mirarHacia("Derecha")
-		if(posicion.x() < game.width()-1){
+		if(posicion.x() < config.anchoMaximo()-1){
 			return posicion.right(1) 
 		}
 		else return posicion.right(0)

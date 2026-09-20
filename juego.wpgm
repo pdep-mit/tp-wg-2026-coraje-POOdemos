@@ -1,6 +1,7 @@
 import wollok.game.*
 import configuracionesJuego.*
 
+
 program NombreDeJuego {
 
 	config.configurarJuego()
