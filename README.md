@@ -3,11 +3,11 @@
 **Grupo:** Nombre de Grupo
 
 **Integrantes:**
-- Nombre y Apellido
-- Nombre y Apellido
-- Nombre y Apellido
-- Nombre y Apellido
-- Nombre y Apellido
+- Matias Joaquin Bolivio
+- Masaki Kondo Nishioeda
+- Enzo Nahuel Lopez Vallejo
+- Bautista Martinez Beraza
+- Salvador Roldan
 
 ## Consignas
 
