@@ -72,4 +72,5 @@ class Ghost inherits Personaje{
 
     	return teclasPresionadas == 1  // Solo se mueve si hay exactamente 1 tecla presionada
 	}
+	
 }

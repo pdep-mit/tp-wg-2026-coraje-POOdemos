@@ -9,7 +9,7 @@ class Personaje {
 	const maxetapaCiclo = 11
 
 	var velocidad = 'Caminar'
-	var mirandoHacia
+	var property mirandoHacia
 	const sujeto
 
 
@@ -36,7 +36,9 @@ class Personaje {
 		else etapaCiclo = 1
     }
 
-	
+	method modoAlerta() {
+		game.say(self, "¡Te vi!")
+	}
 
 }
 

@@ -15,13 +15,19 @@ object nivel1{
 
     method colocarEnemigos(){
         const enemigo1 = new Soldado(mirandoHacia='Derecha',sujeto='Soldado')
-        const enemigo2 = new Soldado(mirandoHacia='Abajo',sujeto='Soldado')
+        const enemigo2 = new Soldado(mirandoHacia='Izquierda',sujeto='Soldado')
         game.addVisual(enemigo1)
         game.addVisual(enemigo2)
 
-        enemigo2.position(game.at(10,15))
 
+        enemigo1.position(game.at(0,9))
+        enemigo1.patrullar()
+        enemigo1.vigilar(ghost)
+
+        enemigo2.position(game.at(20,9))
         enemigo2.patrullar()
+        enemigo2.vigilar(ghost)
+
     }
 
 
