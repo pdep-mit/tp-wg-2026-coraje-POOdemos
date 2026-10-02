@@ -5,7 +5,7 @@ import niveles.nivel1.*
 
 object config {
 	const nivelActual = nivel1
-
+	method mapa() = nivelActual.mapa()
 	method alturaMaxima() = nivelActual.ancho()
 	method anchoMaximo() = nivelActual.alto()
 	method alturaDelSuelo() = 0
@@ -15,6 +15,7 @@ object config {
 	method configurarJuego() {
 		
 		game.title("Nombre del juego")
+    game.cellSize(64) 
 
 		// Se le suma 1 para que el personaje no "atraviese" la pared
 		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]

@@ -1,3 +1,4 @@
+import elementos.objeto.Objeto
 import configuracionesJuego.*
 
 object movimiento {
@@ -11,8 +12,14 @@ object movimiento {
 	}
 
 	method esPosicionValida(posicion) {
-		return posicion.x().between(0, config.anchoMaximo() - 1) && 
+		return self.puedeMoverseA(posicion) && posicion.x().between(0, config.anchoMaximo() - 1) && 
 					 posicion.y().between(0, config.alturaMaxima() - 1)
+	}
+
+	method puedeMoverseA(posicionNueva) {
+
+    const fila = config.mapa().get(posicionNueva.y())
+    return fila.get(posicionNueva.x()) == 0
 	}
 }
 
@@ -45,6 +52,8 @@ object haciaLaIzquierda {
 	method nombre() = "Izquierda"
 	method posicionSiguiente(posicion) = posicion.left(1)
 }
+
+
 
 // object haciaArriba {
 // 	method posicionSiguiente(personaje,posicion) {

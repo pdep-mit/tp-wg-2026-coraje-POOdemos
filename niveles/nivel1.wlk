@@ -8,6 +8,30 @@ object nivel1{
 
     var ghost = ''
 
+    // FIXME este metodo tarda mucho en cargar, buscar otra forma de hacerlo
+const property mapa = [
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+    [1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,1],
+    [1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,1,1,0,1],
+    [1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,1],
+    [1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,1,1,0,1,0,1],
+    [1,0,1,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,1,0,1],
+    [1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,1],
+    [1,1,1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,0,1,1,1],
+    [1,0,0,0,0,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1],
+    [1,0,1,1,1,1,1,0,1,0,1,1,1,1,1,0,1,1,1,0,1],
+    [1,0,1,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,1],
+    [1,0,1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1],
+    [1,0,1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,1],
+    [1,0,1,1,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1],
+    [1,0,1,1,1,1,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1],
+    [1,0,1,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,1],
+    [1,0,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1,0,1,0,1],
+    [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+]
     method crear(personajeJugable){
         ghost = personajeJugable
         game.addVisual(ghost)
@@ -25,21 +49,36 @@ object nivel1{
         game.addVisual(enemigo2)
 
 
-        enemigo1.position(game.at(0,9))
+        enemigo1.position(game.at(1,9))
         enemigo1.patrullar()
         enemigo1.vigilar(ghost)
 
-        enemigo2.position(game.at(18,9))
+        enemigo2.position(game.at(1,1))
         enemigo2.patrullar()
         enemigo2.vigilar(ghost)
 
     }
 
     method colocarObjetos() {
-        const barril = new Barril()
-        game.addVisual(barril)
-        barril.position(game.at(6,6))
-    }
+    var y = 0
+
+    mapa.forEach({ fila =>
+        var x = 0
+
+        fila.forEach({ tipo =>
+            if (tipo == 1) {
+                const barril = new Barril()
+                game.addVisual(barril)
+                barril.position(game.at(x, y))
+
+            }
+
+            x += 1
+        })
+
+        y += 1
+    })
+}
 
 }
 
