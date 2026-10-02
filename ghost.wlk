@@ -58,7 +58,9 @@ class Ghost inherits Personaje{
 				self.quedarseQuieto()
 			}
         })
-
+		game.onTick(300, "mostrarPosicion", {
+				self.mostrarPosicion()
+		})
 	}
 
 	method teclaSeleccionada(tecla) {

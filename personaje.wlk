@@ -1,3 +1,4 @@
+import debug.debug
 import wollok.game.*
 
 class Personaje {
@@ -40,6 +41,10 @@ class Personaje {
 		game.say(self, "¡Te vi!")
 	}
 
+
+	method mostrarPosicion() {
+		debug.say(self, "Posición: " + self.position())
+	}
 }
 
 
