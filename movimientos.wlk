@@ -12,12 +12,11 @@ object movimiento {
 	}
 
 	method esPosicionValida(posicion) {
-		return self.puedeMoverseA(posicion) && posicion.x().between(0, config.anchoMaximo() - 1) && 
-					 posicion.y().between(0, config.alturaMaxima() - 1)
+		return posicion.x().between(0, config.anchoMaximo() - 1) &&
+					 posicion.y().between(0, config.alturaMaxima() - 1) && self.puedeMoverseA(posicion)
 	}
 
 	method puedeMoverseA(posicionNueva) {
-
     const fila = config.mapa().get(posicionNueva.y())
     return fila.get(posicionNueva.x()) == 0
 	}
