@@ -4,8 +4,10 @@ import wollok.game.*
 import niveles.nivel1.*
 
 object config {
-	method alturaMaxima() = 19
-	method anchoMaximo() = 20
+	const nivelActual = nivel1
+
+	method alturaMaxima() = nivelActual.ancho()
+	method anchoMaximo() = nivelActual.alto()
 	method alturaDelSuelo() = 0
 
 	const ghost = new Ghost(sujeto='Ghost',mirandoHacia = 'Arriba')
@@ -13,13 +15,17 @@ object config {
 	method configurarJuego() {
 		
 		game.title("Nombre del juego")
-		game.height(self.alturaMaxima())
-		game.width(self.anchoMaximo()+2)
+
+		// Se le suma 1 para que el personaje no "atraviese" la pared
+		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]
+		// Si elejis ancho 20 entonces irá de 0 a 19
+		game.height(self.alturaMaxima()+1)
+		game.width(self.anchoMaximo()+1)
 
 
 		ghost.configurarTeclas()
 
-		nivel1.crear(ghost)
+		nivelActual.crear(ghost)
 
 		//game.boardGround("fondo.png")
 

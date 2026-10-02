@@ -2,6 +2,9 @@ import soldado.*
 import wollok.game.*
 import personaje.*
 object nivel1{
+    const property ancho = 20
+    const property alto = 20
+
     var ghost = ''
 
     method crear(personajeJugable){
@@ -24,7 +27,7 @@ object nivel1{
         enemigo1.patrullar()
         enemigo1.vigilar(ghost)
 
-        enemigo2.position(game.at(20,9))
+        enemigo2.position(game.at(18,9))
         enemigo2.patrullar()
         enemigo2.vigilar(ghost)
 
