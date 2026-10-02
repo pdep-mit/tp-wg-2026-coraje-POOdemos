@@ -1,3 +1,4 @@
+import elementos.barril.Barril
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -13,6 +14,7 @@ object nivel1{
         ghost.position(game.at(5,5))
 
         self.colocarEnemigos()
+        self.colocarObjetos()
     }
 
 
@@ -33,7 +35,11 @@ object nivel1{
 
     }
 
-
+    method colocarObjetos() {
+        const barril = new Barril()
+        game.addVisual(barril)
+        barril.position(game.at(6,6))
+    }
 
 }
 
