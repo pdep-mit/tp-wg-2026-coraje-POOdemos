@@ -111,9 +111,51 @@ class Soldado inherits Personaje{
 }
     method detectoA(personaje) {
         const cdv = self.campoDeVision()
-        if (cdv.contains(personaje.position())) self.modoAlerta() 
+        if (cdv.contains(personaje.position()) and not self.hayObjetoEnMedio(personaje.position())) {
+            self.modoAlerta()} 
     }
+
+    method hayObjetoEnMedio(posicionPersonaje) {
+        // mirada soldado personaje
+        return self.verificarBloqueoPaso(self.position().x(), self.position().y(), posicionPersonaje)
+    }
+
+    method verificarBloqueoPaso(miradaX, miradaY, destino) {
+        // la mirada llegó a la posición del personaje sin chocar con nada
+        if (miradaX == destino.x() and miradaY == destino.y()) {
+            return false
+        }
+
+        const difX = destino.x() - miradaX
+        const difY = destino.y() - miradaY
+        
+        var proxX = miradaX
+        var proxY = miradaY
+
+        // Calculamos hacia dónde avanza la mirada en este paso
+        if (difX.abs() > difY.abs()) {
+            proxX += if (difX > 0) 1 else -1
+        } else if (difY.abs() > difX.abs()) {
+            proxY += if (difY > 0) 1 else -1
+        } else {
+            proxX += if (difX > 0) 1 else -1
+            proxY += if (difY > 0) 1 else -1
+        }
+        
+        const posRevisada = game.at(proxX, proxY)
+        
+        //Si la casilla que estamos mirando no es el destino final y es un objeto la visión se bloquea
+        if (posRevisada != destino and not movimiento.puedeMoverseA(posRevisada)) {
+            return true
+        }
+
+        // Si la casilla está libre, el método se llama a sí mismo para dar el siguiente paso
+        return self.verificarBloqueoPaso(proxX, proxY, destino)
+    }
+    
 }
+    
+
 
 object azar {
 	
