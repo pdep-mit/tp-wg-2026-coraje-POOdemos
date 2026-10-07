@@ -153,6 +153,8 @@ class Soldado inherits Personaje{
         return self.verificarBloqueoPaso(proxX, proxY, destino)
     }
     
+    method interactuarCon(personaje) {}
+
 }
     
 

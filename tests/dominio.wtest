@@ -1,0 +1,32 @@
+import wollok.game.*
+import movimientos.*
+import ghost.*
+
+// Se usa el nivel1 que esta actualmente cargado para los test como referencia de las posiciones
+describe "Movimiento de un personaje" {
+  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = 'Arriba')
+
+  test "se mueve a la celda siguiente si está libre" {
+    ghost.position(game.at(5, 5))
+    movimiento.mover(ghost, haciaArriba)
+    assert.equals(game.at(5, 6), ghost.position())
+  }
+
+  test "no se mueve si en la celda siguiente hay un obstáculo" {
+    ghost.position(game.at(1, 5))
+    movimiento.mover(ghost, haciaLaIzquierda)
+    assert.equals(game.at(1, 5), ghost.position())
+  }
+
+  test "no se mueve fuera de los límites del mapa" {
+    ghost.position(game.at(5, 0))
+    movimiento.mover(ghost, haciaAbajo)
+    assert.equals(game.at(5, 0), ghost.position())
+  }
+
+  test "mira hacia la dirección elegida aunque no pueda avanzar" {
+    ghost.position(game.at(1, 5))
+    movimiento.mover(ghost, haciaLaIzquierda)
+    assert.equals("Izquierda", ghost.mirandoHacia())
+  }
+}
