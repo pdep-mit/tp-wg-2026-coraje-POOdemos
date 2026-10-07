@@ -1,3 +1,4 @@
+import UI.indicadorPlano.indicadorPlano
 import personaje.*
 import movimientos.*
 
@@ -8,6 +9,7 @@ class Ghost inherits Personaje{
     var dPresionado = false
     var shiftPresionado = false
 
+		var property tienePlano = false
 
     method configurarTeclas() {
 		
@@ -75,4 +77,8 @@ class Ghost inherits Personaje{
     	return teclasPresionadas == 1  // Solo se mueve si hay exactamente 1 tecla presionada
 	}
 	
+	method agarrarPlano() {
+		tienePlano = true
+		indicadorPlano.planoRecogido()
+	}
 }
