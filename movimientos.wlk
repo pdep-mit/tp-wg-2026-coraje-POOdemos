@@ -17,8 +17,9 @@ object movimiento {
 	}
 
 	method puedeMoverseA(posicionNueva) {
+	const valores = [0,2,3]
     const fila = config.mapa().get(posicionNueva.y())
-    return fila.get(posicionNueva.x()) == 0
+    return valores.contains(fila.get(posicionNueva.x()))
 	}
 }
 

@@ -15,7 +15,7 @@ object config {
 	method configurarJuego() {
 		
 		game.title("Nombre del juego")
-    game.cellSize(64) 
+    	game.cellSize(64) 
 
 		// Se le suma 1 para que el personaje no "atraviese" la pared
 		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]
