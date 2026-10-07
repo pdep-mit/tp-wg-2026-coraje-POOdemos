@@ -7,4 +7,7 @@ object indicadorPlano {
     method planoRecogido() {
       image = "objetos/PlanoUITrue.png"
     }
+        method reiniciar() {
+      image = "objetos/PlanoUIFalse.png"
+    }
 }
