@@ -1,6 +1,7 @@
 import UI.indicadorPlano.indicadorPlano
 import personaje.*
 import movimientos.*
+import partida.*
 
 class Ghost inherits Personaje{
     var wPresionado = false
@@ -10,6 +11,7 @@ class Ghost inherits Personaje{
     var shiftPresionado = false
 
 		var property tienePlano = false
+		var property vivo = true.
 
     method configurarTeclas() {
 		
@@ -32,7 +34,7 @@ class Ghost inherits Personaje{
 		const teclas = [wPresionado,aPresionado,sPresionado,dPresionado]
 
 		// Movimiento continuo
-		game.onTick(
+		partida.cadaMs(
 			300,"caminar",{ 
 
 				if (self.teclaSeleccionada(wPresionado) and !shiftPresionado) movimiento.mover(self, haciaArriba)
@@ -42,7 +44,7 @@ class Ghost inherits Personaje{
 			}
 		)
 
-		game.onTick(
+		partida.cadaMs(
 			150,"correr",{ 
 				if (self.teclaSeleccionada(wPresionado) and shiftPresionado) movimiento.mover(self, haciaArriba)
 				else if (self.teclaSeleccionada(sPresionado) and shiftPresionado) movimiento.mover(self, haciaAbajo)
@@ -52,7 +54,7 @@ class Ghost inherits Personaje{
 		)
 
 
-		game.onTick(200, "animacion", {
+		partida.cadaMs(200, "animacion", {
             if (self.teclaSeleccionada(wPresionado) or self.teclaSeleccionada(sPresionado) or self.teclaSeleccionada(aPresionado) or self.teclaSeleccionada(dPresionado)) {
                 self.cambiarFrame()
             }
@@ -60,7 +62,7 @@ class Ghost inherits Personaje{
 				self.quedarseQuieto()
 			}
         })
-		game.onTick(300, "mostrarPosicion", {
+		partida.cadaMs(300, "mostrarPosicion", {
 				self.mostrarPosicion()
 		})
 	}
@@ -81,4 +83,10 @@ class Ghost inherits Personaje{
 		tienePlano = true
 		indicadorPlano.planoRecogido()
 	}
+	  	method morir() {
+  		if (vivo) {
+  			vivo = false
+  			partida.terminarConDerrota(self)
+  		}
+  	}
 }
