@@ -1,3 +1,5 @@
+import UI.indicadorPlano.indicadorPlano
+import elementos.plano.Plano
 import elementos.barril.Barril
 import soldado.*
 import wollok.game.*
@@ -10,6 +12,7 @@ object nivel1{
 
     // FIXME este metodo tarda mucho en cargar, buscar otra forma de hacerlo
 const property mapa = [
+    [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -18,8 +21,7 @@ const property mapa = [
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
     [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-    [1,0,1,1,1,1,1,1,1,1,1,1,1,1,1]
+    [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ]
 
 const property mapa2 = [
@@ -41,6 +43,11 @@ const property mapa2 = [
 
         self.colocarEnemigos()
         self.colocarObjetos()
+
+        const plano = new Plano()
+        game.addVisual(plano)
+        plano.position(game.at(5,6))
+		game.addVisual(indicadorPlano)
     }
 
 

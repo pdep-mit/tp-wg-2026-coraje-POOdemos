@@ -26,6 +26,11 @@ object config {
 
 		ghost.configurarTeclas()
 
+
+		game.onCollideDo(ghost, {
+			elementoQueChoque => elementoQueChoque.interactuarCon(ghost)
+		})
+
 		nivelActual.crear(ghost)
 
 		//game.boardGround("fondo.png")
