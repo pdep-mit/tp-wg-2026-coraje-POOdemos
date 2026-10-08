@@ -17,7 +17,7 @@ object config {
 
 		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]
 		// Si elejis ancho 20 entonces irá de 0 a 19
-		game.height(self.alturaMaxima()+1)
+		game.height(self.alturaMaxima())
 		game.width(self.anchoMaximo())
 		ghost.configurarTeclas()
 		self.iniciarPartida()
@@ -26,7 +26,7 @@ object config {
 	// Se llama al empezar y cada vez que se reinicia
 	method iniciarPartida() {
 		ghost = new Ghost(sujeto='Ghost', mirandoHacia='Arriba')
-		
+		ghost.configurarTeclas()
 
 		game.onCollideDo(ghost, {
 			elementoQueChoque => elementoQueChoque.interactuarCon(ghost)
