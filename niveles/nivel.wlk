@@ -8,11 +8,14 @@ import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
 
-object nivel1 {
-	const property ancho = 15
-	const property alto = 10
+class Nivel {
+	const property ancho
+	const property alto
+	const property mapa
+    
 
-	var ghost = ''
+	var ghost = null
+	
 
 	// Ref :
 	// 1 = Barril
@@ -21,22 +24,11 @@ object nivel1 {
 	// 4 = Plano
 	// 5 = Trampa
 
-	const property mapa = [
-		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,2,1],
-		[1,0,0,0,0,0,0,0,5,0,0,0,0,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,0,4,0,0,0,0,0,0,0,0,5,0,0,1],
-		[1,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,3,0,0,0,0,0,0,0,0,0,0,0,0,1],
-		[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-	]
+	
 
 	method crear(personajeJugable) {
 		ghost = personajeJugable
-		indicadorPlano.reiniciar()        // <-- línea nueva
+		indicadorPlano.reiniciar()       
 
 		var y = alto - 1
 		mapa.forEach({ fila =>

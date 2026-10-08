@@ -10,8 +10,8 @@ class Ghost inherits Personaje{
     var dPresionado = false
     var shiftPresionado = false
 
-		var property tienePlano = false
-		var property vivo = true
+	var property tienePlano = false
+	var property vivo = true
 
     method configurarTeclas() {
 		

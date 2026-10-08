@@ -2,7 +2,7 @@ import personaje.*
 import movimientos.*
 
 class Soldado inherits Personaje{
-    var moviendo = false
+    const moviendo = false
     var direccionVigilancia = direccionAbajo
 
 
@@ -96,7 +96,9 @@ class Soldado inherits Personaje{
         return self.verificarBloqueoPaso(proxX, proxY, destino)
     }
     
-    method interactuarCon(personaje) {}
+    method interactuarCon(personaje) {
+        self.modoAlerta(personaje)
+    }
 
     
 
