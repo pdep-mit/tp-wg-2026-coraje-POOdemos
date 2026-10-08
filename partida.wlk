@@ -19,7 +19,6 @@ object partida {
 		self.pausar()
 		game.say(personaje, "¡Morí!")
 		game.addVisual(pantallaDerrota)
-		game.addVisual(textoReinicio)
 		keyboard.r().onPressDo({ self.reiniciar() })
 	}
 
@@ -36,9 +35,3 @@ object pantallaDerrota {
 	method interactuarCon(personaje) {}
 }
 
-object textoReinicio {
-	const property position = game.at(5, 3)
-	method text() = "Presioná R para reiniciar"
-	method textColor() = "FFFFFF"
-	method interactuarCon(personaje) {}
-}

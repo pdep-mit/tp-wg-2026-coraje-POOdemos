@@ -11,7 +11,7 @@ class Ghost inherits Personaje{
     var shiftPresionado = false
 
 		var property tienePlano = false
-		var property vivo = true.
+		var property vivo = true
 
     method configurarTeclas() {
 		
@@ -83,10 +83,12 @@ class Ghost inherits Personaje{
 		tienePlano = true
 		indicadorPlano.planoRecogido()
 	}
-	  	method morir() {
+
+	method morir() {
   		if (vivo) {
   			vivo = false
   			partida.terminarConDerrota(self)
   		}
+		self.cambiarImagen('personajes/Ghost/Morir.png')
   	}
 }

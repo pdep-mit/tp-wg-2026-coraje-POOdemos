@@ -14,7 +14,22 @@ class Personaje {
 	const sujeto
 
 
-	method image() = "personajes/"+sujeto+"/"+velocidad+"/"+mirandoHacia+"/"+etapaCiclo+".png"
+	var imagenEvento = null
+
+	method image() {
+    	if (imagenEvento != null) {
+        	return imagenEvento
+    	}
+    	return "personajes/"+sujeto+"/"+velocidad+"/"+mirandoHacia+"/"+etapaCiclo+".png"
+	}
+	
+	method cambiarImagen(unaImagen) {
+	    imagenEvento = unaImagen
+	}
+	
+	method resetearImagen() {
+	    imagenEvento = null
+	}
 
 
 	method mirarHacia(direccion){
@@ -36,10 +51,6 @@ class Personaje {
 			etapaCiclo += 1
 		else etapaCiclo = 1
     }
-
-	method modoAlerta() {
-		game.say(self, "¡Te vi!")
-	}
 
 
 	method mostrarPosicion() {

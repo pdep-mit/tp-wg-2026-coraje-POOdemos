@@ -47,7 +47,7 @@ object nivel1 {
 			})
 			y -= 1
 		})
-        indicadorPlano.reiniciar().
+        indicadorPlano.reiniciar()
 		game.addVisual(indicadorPlano)
 	}
 
