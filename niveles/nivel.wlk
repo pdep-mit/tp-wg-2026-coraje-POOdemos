@@ -15,7 +15,7 @@ class Nivel {
     
 
 	var ghost = null
-	
+	const enemigos = []
 
 	// Ref :
 	// 1 = Barril
@@ -55,6 +55,7 @@ class Nivel {
 			enemigo.position(game.at(x, y))
 			enemigo.patrullar()
 			enemigo.vigilar(ghost)
+			enemigos.add(enemigo)
 		}
 		else if (tipo == 3) {
 			game.addVisual(ghost)
@@ -71,4 +72,9 @@ class Nivel {
 			trampa.position(game.at(x, y))
 		}
 	}
+
+	method enemigoEn(posicion){ // Devuelve el soldado que esta en la posicion
+		return enemigos.findOrDefault ({soldado => soldado.position().x() == posicion.x() && soldado.position().y() == posicion.y()},null)
+	}
+
 }

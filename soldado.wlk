@@ -9,11 +9,11 @@ class Soldado inherits Personaje{
     method patrullar(){
         
         
-        game.onTick(5000,"Cambiar direccion",{
+        game.onTick(5000,"cambiar direccion",{
             direccionVigilancia = [direccionArriba,direccionAbajo,direccionIzquierda,direccionDerecha].anyOne()
         })
 
-        game.onTick(200, "animacion", {
+        game.onTick(200, "animacionSoldado", {
             if (moviendo) {
                 self.cambiarFrame()
             }
@@ -83,10 +83,17 @@ class Soldado inherits Personaje{
     }
     
     method interactuarCon(personaje) {
-        self.modoAlerta(personaje)
+        if (vivo) self.modoAlerta(personaje)
     }
 
-    
+    method morir(){
+        vivo = false
+        self.cambiarImagen('personajes/Soldado/Morir.png')
+
+        game.removeTickEvent('observar')
+        game.removeTickEvent('animacionSoldado')
+        game.removeTickEvent('cambiar direccion')
+    }
 
 }
     

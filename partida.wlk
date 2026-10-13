@@ -10,9 +10,25 @@ object partida {
 		pausada = true
 	}
 
+	method reanudar(){
+		pausada = false
+	}
+
 	// Igual que game.onTick, pero no ejecuta la acción mientras la partida está pausada
 	method cadaMs(milisegundos, nombre, accion) {
 		game.onTick(milisegundos, nombre, { if (!pausada) accion.apply() })
+	}
+
+
+	method camaraMuerte(){
+
+		game.addVisual(pantallaMuerte)
+
+		game.onTick(1000, "cambiar camara", {
+			game.removeVisual(pantallaMuerte)
+			game.removeTickEvent('cambiar camara')
+        })
+		
 	}
 
 	method terminarConDerrota(personaje) {
@@ -35,3 +51,7 @@ object pantallaDerrota {
 	method interactuarCon(personaje) {}
 }
 
+object pantallaMuerte {
+	const property position = game.origin()
+	method image() = "objetos/Camara muerte2.png"
+}

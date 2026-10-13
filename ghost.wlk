@@ -11,7 +11,7 @@ class Ghost inherits Personaje{
     var shiftPresionado = false
 
 	var property tienePlano = false
-	var property vivo = true
+
 
     method configurarTeclas() {
 		
@@ -31,6 +31,8 @@ class Ghost inherits Personaje{
 		keyboard.shift().onPressDo({ shiftPresionado = true; self.velocidadMovimiento('Correr') })
 		keyboard.shift().onReleaseDo({ shiftPresionado = false; self.velocidadMovimiento('Caminar') })
 		
+
+		keyboard.z().onPressDo({movimiento.matar(self)})
 		const teclas = [wPresionado,aPresionado,sPresionado,dPresionado]
 
 		// Movimiento continuo
@@ -54,7 +56,7 @@ class Ghost inherits Personaje{
 		)
 
 
-		partida.cadaMs(200, "animacion", {
+		partida.cadaMs(200, "animacionGhost", {
             if (self.teclaSeleccionada(wPresionado) or self.teclaSeleccionada(sPresionado) or self.teclaSeleccionada(aPresionado) or self.teclaSeleccionada(dPresionado)) {
                 self.cambiarFrame()
             }
@@ -63,11 +65,12 @@ class Ghost inherits Personaje{
 			}
         })
 		partida.cadaMs(300, "mostrarPosicion", {
-				self.mostrarPosicion()
+			self.mostrarPosicion()
 		})
 
-		
+
 	}
+
 
 	method teclaSeleccionada(tecla) {
     	if (!tecla) return false

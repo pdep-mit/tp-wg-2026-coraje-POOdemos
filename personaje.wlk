@@ -12,7 +12,7 @@ class Personaje {
 	var velocidad = 'Caminar'
 	var property mirandoHacia
 	const sujeto
-
+	var property vivo = true
 
 	var imagenEvento = null
 

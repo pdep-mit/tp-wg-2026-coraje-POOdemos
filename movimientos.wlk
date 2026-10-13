@@ -1,5 +1,7 @@
+import soldado.*
 import elementos.objeto.Objeto
 import configuracionesJuego.*
+import partida.*
 
 object movimiento {
 	method mover(personaje, direccion) {
@@ -20,6 +22,20 @@ object movimiento {
 		const valores = [1]
     	const fila = config.mapa().get(posicionNueva.y())
     	return not valores.contains(fila.get(posicionNueva.x()))  // falta
+	}
+
+	method matar(personaje){
+		var direccion = haciaAbajo
+
+		const enemigo = config.nivelActual().enemigoEn(direccion.posicionSiguiente(personaje.position()))
+
+		if (enemigo != null){
+			partida.camaraMuerte()
+			enemigo.morir()
+		}
+		else{
+			game.say(personaje,'No hay enemigos cerca')
+		}
 	}
 }
 

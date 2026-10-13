@@ -3,7 +3,7 @@ import wollok.game.*
 import niveles.n1.n1
 
 object config {
-	const nivelActual = n1
+	const property nivelActual = n1
 	method mapa() = nivelActual.mapa()
 	method alturaMaxima() = nivelActual.alto()
 	method anchoMaximo() = nivelActual.ancho()
