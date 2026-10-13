@@ -65,6 +65,8 @@ class Ghost inherits Personaje{
 		partida.cadaMs(300, "mostrarPosicion", {
 				self.mostrarPosicion()
 		})
+
+		
 	}
 
 	method teclaSeleccionada(tecla) {
