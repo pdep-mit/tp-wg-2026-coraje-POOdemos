@@ -10,17 +10,18 @@ class Personaje {
 	const maxetapaCiclo = 11
 
 	var velocidad = 'Caminar'
-	var property mirandoHacia
 	const sujeto
 	var property vivo = true
 
 	var imagenEvento = null
 
+	var property direccionMirando
+
 	method image() {
     	if (imagenEvento != null) {
         	return imagenEvento
     	}
-    	return "personajes/"+sujeto+"/"+velocidad+"/"+mirandoHacia+"/"+etapaCiclo+".png"
+    	return "personajes/"+sujeto+"/"+velocidad+"/"+direccionMirando.nombre()+"/"+etapaCiclo+".png"
 	}
 	
 	method cambiarImagen(unaImagen) {
@@ -33,7 +34,7 @@ class Personaje {
 
 
 	method mirarHacia(direccion){
-		mirandoHacia = direccion
+		direccionMirando = direccion
 	}
 
 	method quedarseQuieto(){
@@ -57,5 +58,47 @@ class Personaje {
 		debug.say(self, "Posición: " + self.position())
 	}
 }
+
+object haciaArriba {
+
+	method puedeVer(soldado,miPos, otroPos) {
+        //soldado.mirarHacia('Arriba')
+        return miPos.y() < otroPos.y() and miPos.x() == otroPos.x()
+    }
+
+	method nombre() = "Arriba"
+	method posicionSiguiente(posicion) = posicion.up(1)
+}
+
+object haciaAbajo {
+	method puedeVer(soldado,miPos, otroPos) {
+        //soldado.mirarHacia('Abajo')
+        return miPos.y() > otroPos.y() and miPos.x() == otroPos.x()
+    }
+
+	method nombre() = "Abajo"
+	method posicionSiguiente(posicion) = posicion.down(1)
+}
+
+object haciaLaDerecha {
+	method puedeVer(soldado,miPos, otroPos) {
+        //soldado.mirarHacia('Derecha')
+        return miPos.x() < otroPos.x() and miPos.y() == otroPos.y()
+    }
+
+	method nombre() = "Derecha"
+	method posicionSiguiente(posicion) = posicion.right(1)
+}
+
+object haciaLaIzquierda {
+	method puedeVer(soldado,miPos, otroPos) {
+        //soldado.mirarHacia('Izquierda')
+        return miPos.x() > otroPos.x() and miPos.y() == otroPos.y()
+    }
+
+	method nombre() = "Izquierda"
+	method posicionSiguiente(posicion) = posicion.left(1)
+}
+
 
 

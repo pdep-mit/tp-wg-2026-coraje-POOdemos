@@ -4,9 +4,10 @@ import configuracionesJuego.*
 import partida.*
 
 object movimiento {
-	method mover(personaje, direccion) {
-		personaje.mirarHacia(direccion.nombre())
-		const nuevaPosicion = direccion.posicionSiguiente(personaje.position())
+	method mover(personaje) {
+
+
+		const nuevaPosicion = personaje.direccionMirando().posicionSiguiente(personaje.position())
 		
 		if (self.esPosicionValida(nuevaPosicion)){
 			personaje.position(nuevaPosicion)
@@ -25,9 +26,8 @@ object movimiento {
 	}
 
 	method matar(personaje){
-		var direccion = haciaAbajo
 
-		const enemigo = config.nivelActual().enemigoEn(direccion.posicionSiguiente(personaje.position()))
+		const enemigo = config.nivelActual().enemigoEn(personaje.direccionMirando().posicionSiguiente(personaje.position()))
 
 		if (enemigo != null){
 			partida.camaraMuerte()
@@ -40,26 +40,6 @@ object movimiento {
 }
 
 
-
-object haciaArriba {
-	method nombre() = "Arriba"
-	method posicionSiguiente(posicion) = posicion.up(1)
-}
-
-object haciaAbajo {
-	method nombre() = "Abajo"
-	method posicionSiguiente(posicion) = posicion.down(1)
-}
-
-object haciaLaDerecha {
-	method nombre() = "Derecha"
-	method posicionSiguiente(posicion) = posicion.right(1)
-}
-
-object haciaLaIzquierda {
-	method nombre() = "Izquierda"
-	method posicionSiguiente(posicion) = posicion.left(1)
-}
 
 
 

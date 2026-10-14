@@ -4,8 +4,6 @@ import configuracionesJuego.*
 object partida {
 	var pausada = false
 
-	method estaPausada() = pausada
-
 	method pausar() {
 		pausada = true
 	}
@@ -24,10 +22,8 @@ object partida {
 
 		game.addVisual(pantallaMuerte)
 
-		game.onTick(1000, "cambiar camara", {
-			game.removeVisual(pantallaMuerte)
-			game.removeTickEvent('cambiar camara')
-        })
+
+		game.schedule(1000, { => game.removeVisual(pantallaMuerte) })
 		
 	}
 

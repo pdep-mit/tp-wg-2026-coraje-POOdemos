@@ -13,19 +13,20 @@ class Ghost inherits Personaje{
 	var property tienePlano = false
 
 
+
     method configurarTeclas() {
 		
 		// Configurar las teclas
-		keyboard.w().onPressDo({ wPresionado = true; self.mirarHacia('Arriba') })
+		keyboard.w().onPressDo({ wPresionado = true; self.mirarHacia(haciaArriba) })
 		keyboard.w().onReleaseDo({ wPresionado = false })
 		
-		keyboard.s().onPressDo({ sPresionado = true; self.mirarHacia('Abajo') })
+		keyboard.s().onPressDo({ sPresionado = true; self.mirarHacia(haciaAbajo) })
 		keyboard.s().onReleaseDo({ sPresionado = false })
 		
-		keyboard.a().onPressDo({ aPresionado = true; self.mirarHacia('Izquierda') })
+		keyboard.a().onPressDo({ aPresionado = true; self.mirarHacia(haciaLaIzquierda) })
 		keyboard.a().onReleaseDo({ aPresionado = false })
 		
-		keyboard.d().onPressDo({ dPresionado = true; self.mirarHacia('Derecha')  })
+		keyboard.d().onPressDo({ dPresionado = true; self.mirarHacia(haciaLaDerecha)  })
 		keyboard.d().onReleaseDo({ dPresionado = false })
 
 		keyboard.shift().onPressDo({ shiftPresionado = true; self.velocidadMovimiento('Correr') })
@@ -39,25 +40,19 @@ class Ghost inherits Personaje{
 		partida.cadaMs(
 			300,"caminar",{ 
 
-				if (self.teclaSeleccionada(wPresionado) and !shiftPresionado) movimiento.mover(self, haciaArriba)
-				else if (self.teclaSeleccionada(sPresionado) and !shiftPresionado) movimiento.mover(self, haciaAbajo)
-				else if (self.teclaSeleccionada(aPresionado) and !shiftPresionado) movimiento.mover(self, haciaLaIzquierda)
-				else if (self.teclaSeleccionada(dPresionado) and !shiftPresionado) movimiento.mover(self, haciaLaDerecha)
+				if (self.teclaMovimientoSeleccionada() and !shiftPresionado) movimiento.mover(self)
 			}
 		)
 
 		partida.cadaMs(
 			150,"correr",{ 
-				if (self.teclaSeleccionada(wPresionado) and shiftPresionado) movimiento.mover(self, haciaArriba)
-				else if (self.teclaSeleccionada(sPresionado) and shiftPresionado) movimiento.mover(self, haciaAbajo)
-				else if (self.teclaSeleccionada(aPresionado) and shiftPresionado) movimiento.mover(self, haciaLaIzquierda)
-				else if (self.teclaSeleccionada(dPresionado) and shiftPresionado) movimiento.mover(self, haciaLaDerecha)
+				if (self.teclaMovimientoSeleccionada() and shiftPresionado) movimiento.mover(self)
 			}
 		)
 
 
 		partida.cadaMs(200, "animacionGhost", {
-            if (self.teclaSeleccionada(wPresionado) or self.teclaSeleccionada(sPresionado) or self.teclaSeleccionada(aPresionado) or self.teclaSeleccionada(dPresionado)) {
+            if (self.teclaMovimientoSeleccionada()) {
                 self.cambiarFrame()
             }
 			else{
@@ -72,10 +67,9 @@ class Ghost inherits Personaje{
 	}
 
 
-	method teclaSeleccionada(tecla) {
-    	if (!tecla) return false
-    
-    		const teclasPresionadas = [wPresionado, aPresionado, sPresionado, dPresionado]
+	method teclaMovimientoSeleccionada() {
+
+    	const teclasPresionadas = [wPresionado, aPresionado, sPresionado, dPresionado]
         	.filter({ t => t })
         	.size()
     

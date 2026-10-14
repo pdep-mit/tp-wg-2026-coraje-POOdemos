@@ -1,4 +1,5 @@
 import ghost.*
+import personaje.*
 import wollok.game.*
 import niveles.n1.n1
 
@@ -9,7 +10,7 @@ object config {
 	method anchoMaximo() = nivelActual.ancho()
 	method alturaDelSuelo() = 0
 
-	var ghost = new Ghost(sujeto='Ghost', mirandoHacia='Arriba')
+	var ghost = new Ghost(sujeto='Ghost', direccionMirando = haciaAbajo)
 
 	method configurarJuego() {
 		game.title("Nombre del juego")
@@ -19,20 +20,23 @@ object config {
 		// Si elejis ancho 20 entonces irá de 0 a 19
 		game.height(self.alturaMaxima())
 		game.width(self.anchoMaximo())
-		ghost.configurarTeclas()
+
 		self.iniciarPartida()
+
+
 	}
 
 	// Se llama al empezar y cada vez que se reinicia
 	method iniciarPartida() {
-		ghost = new Ghost(sujeto='Ghost', mirandoHacia='Arriba')
+		ghost = new Ghost(sujeto='Ghost', direccionMirando = haciaAbajo)
 		ghost.configurarTeclas()
+
+
+		nivelActual.crear(ghost)
 
 		game.onCollideDo(ghost, {
 			elementoQueChoque => elementoQueChoque.interactuarCon(ghost)
 		})
-
-		nivelActual.crear(ghost)
 		//game.boardGround("fondo.png")
 	}
 }

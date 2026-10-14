@@ -8,6 +8,7 @@ import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
 
+
 class Nivel {
 	const property ancho
 	const property alto
@@ -50,7 +51,7 @@ class Nivel {
 			barril.position(game.at(x, y))
 		}
 		else if (tipo == 2) {
-			const enemigo = new Soldado(mirandoHacia = 'Abajo', sujeto = 'Soldado')
+			const enemigo = new Soldado(direccionMirando = haciaLaIzquierda, sujeto = 'Soldado')
 			game.addVisual(enemigo)
 			enemigo.position(game.at(x, y))
 			enemigo.patrullar()

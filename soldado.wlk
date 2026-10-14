@@ -3,14 +3,12 @@ import movimientos.*
 
 class Soldado inherits Personaje{
     const moviendo = false
-    var direccionVigilancia = direccionAbajo
-
 
     method patrullar(){
         
         
         game.onTick(5000,"cambiar direccion",{
-            direccionVigilancia = [direccionArriba,direccionAbajo,direccionIzquierda,direccionDerecha].anyOne()
+            direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
         })
 
         game.onTick(200, "animacionSoldado", {
@@ -33,14 +31,14 @@ class Soldado inherits Personaje{
 
     method detectoA(personaje) {
 
-        if (self.position().distance(personaje.position()) < 5 and direccionVigilancia.puedeVer(self,self.position(), personaje.position()) and not self.hayObjetoEnMedio(personaje.position())) {
+        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) and not self.hayObjetoEnMedio(personaje.position())) {
             self.modoAlerta(personaje)
         } 
     }
 
     method modoAlerta(personaje) {
 		self.quedarseQuieto()
-        self.cambiarImagen('personajes/Soldado/Apuntar/'+mirandoHacia+'.png')
+        self.cambiarImagen('personajes/Soldado/Apuntar/'+direccionMirando.nombre()+'.png')
         personaje.morir()
 	}
 
@@ -97,30 +95,3 @@ class Soldado inherits Personaje{
 
 }
     
-object direccionArriba {
-    method puedeVer(soldado,miPos, otroPos) {
-        soldado.mirarHacia('Arriba')
-        return miPos.y() < otroPos.y() and miPos.x() == otroPos.x()
-    }
-}
-
-object direccionAbajo {
-    method puedeVer(soldado,miPos, otroPos) {
-        soldado.mirarHacia('Abajo')
-        return miPos.y() > otroPos.y() and miPos.x() == otroPos.x()
-    }
-}
-
-object direccionIzquierda {
-    method puedeVer(soldado,miPos, otroPos) {
-        soldado.mirarHacia('Izquierda')
-        return miPos.x() > otroPos.x() and miPos.y() == otroPos.y()
-    }
-}
-
-object direccionDerecha {
-    method puedeVer(soldado,miPos, otroPos) {
-        soldado.mirarHacia('Derecha')
-        return miPos.x() < otroPos.x() and miPos.y() == otroPos.y()
-    }
-}
