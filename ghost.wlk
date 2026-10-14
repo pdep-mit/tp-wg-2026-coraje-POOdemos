@@ -29,28 +29,14 @@ class Ghost inherits Personaje{
 		keyboard.d().onPressDo({ dPresionado = true; self.mirarHacia(haciaLaDerecha)  })
 		keyboard.d().onReleaseDo({ dPresionado = false })
 
-		keyboard.shift().onPressDo({ shiftPresionado = true; self.velocidadMovimiento('Correr') })
-		keyboard.shift().onReleaseDo({ shiftPresionado = false; self.velocidadMovimiento('Caminar') })
+		keyboard.shift().onPressDo({ shiftPresionado = true; self.correr() })
+		keyboard.shift().onReleaseDo({ shiftPresionado = false; self.caminar() })
 		
 
 		keyboard.z().onPressDo({movimiento.matar(self)})
-		const teclas = [wPresionado,aPresionado,sPresionado,dPresionado]
 
-		// Movimiento continuo
-		partida.cadaMs(
-			300,"caminar",{ 
-
-				if (self.teclaMovimientoSeleccionada() and !shiftPresionado) movimiento.mover(self)
-			}
-		)
-
-		partida.cadaMs(
-			150,"correr",{ 
-				if (self.teclaMovimientoSeleccionada() and shiftPresionado) movimiento.mover(self)
-			}
-		)
-
-
+		self.iniciarMovimiento()
+		
 		partida.cadaMs(200, "animacionGhost", {
             if (self.teclaMovimientoSeleccionada()) {
                 self.cambiarFrame()
@@ -59,6 +45,7 @@ class Ghost inherits Personaje{
 				self.quedarseQuieto()
 			}
         })
+
 		partida.cadaMs(300, "mostrarPosicion", {
 			self.mostrarPosicion()
 		})
@@ -66,6 +53,25 @@ class Ghost inherits Personaje{
 
 	}
 
+	method iniciarMovimiento() {
+    	partida.cadaMs(
+        	(self.velocidad().velocidad()),"moverGhost",{ 
+            	if (self.teclaMovimientoSeleccionada()) movimiento.mover(self)
+        	}
+    	)
+	}
+
+	override method correr(){
+    	velocidad = correr
+    	game.removeTickEvent("moverGhost")
+    	self.iniciarMovimiento()
+	}
+
+	override method caminar(){
+    	velocidad = caminar
+    	game.removeTickEvent("moverGhost")
+    	self.iniciarMovimiento()
+	}
 
 	method teclaMovimientoSeleccionada() {
 

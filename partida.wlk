@@ -21,8 +21,6 @@ object partida {
 	method camaraMuerte(){
 
 		game.addVisual(pantallaMuerte)
-
-
 		game.schedule(1000, { => game.removeVisual(pantallaMuerte) })
 		
 	}
@@ -35,6 +33,13 @@ object partida {
 	}
 
 	method reiniciar() {
+		game.removeTickEvent('animacionSoldado')
+    	game.removeTickEvent('observarEnemigo')
+    	game.removeTickEvent('moverGhost')
+    	game.removeTickEvent('animacionGhost')
+    	game.removeTickEvent('mostrarPosicion')
+    	game.removeTickEvent('cambiar camara')
+
 		game.clear()
 		pausada = false
 		config.iniciarPartida()

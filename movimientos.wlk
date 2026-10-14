@@ -6,7 +6,6 @@ import partida.*
 object movimiento {
 	method mover(personaje) {
 
-
 		const nuevaPosicion = personaje.direccionMirando().posicionSiguiente(personaje.position())
 		
 		if (self.esPosicionValida(nuevaPosicion)){
@@ -29,7 +28,7 @@ object movimiento {
 
 		const enemigo = config.nivelActual().enemigoEn(personaje.direccionMirando().posicionSiguiente(personaje.position()))
 
-		if (enemigo != null){
+		if (enemigo != null && personaje.vivo()){
 			partida.camaraMuerte()
 			enemigo.morir()
 		}
