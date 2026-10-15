@@ -75,7 +75,7 @@ class Nivel {
 	}
 
 	method enemigoEn(posicion){ // Devuelve el soldado que esta en la posicion
-		return enemigos.findOrDefault ({soldado => soldado.position().x() == posicion.x() && soldado.position().y() == posicion.y()},null)
+		return enemigos.findOrDefault ({soldado => soldado.vivo() && soldado.position().x() == posicion.x() && soldado.position().y() == posicion.y()},null)
 	}
 
 }

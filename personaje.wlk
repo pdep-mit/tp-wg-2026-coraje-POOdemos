@@ -9,7 +9,7 @@ class Personaje {
 	var etapaCiclo = 0
 	const maxetapaCiclo = 11
 
-	var velocidad = 'Caminar'
+	var property velocidad = caminar
 	const sujeto
 	var property vivo = true
 
@@ -21,7 +21,7 @@ class Personaje {
     	if (imagenEvento != null) {
         	return imagenEvento
     	}
-    	return "personajes/"+sujeto+"/"+velocidad+"/"+direccionMirando.nombre()+"/"+etapaCiclo+".png"
+    	return "personajes/"+sujeto+"/"+velocidad.nombre()+"/"+direccionMirando.nombre()+"/"+etapaCiclo+".png"
 	}
 	
 	method cambiarImagen(unaImagen) {
@@ -32,7 +32,6 @@ class Personaje {
 	    imagenEvento = null
 	}
 
-
 	method mirarHacia(direccion){
 		direccionMirando = direccion
 	}
@@ -41,8 +40,12 @@ class Personaje {
 		etapaCiclo = 0
 	}
 
-	method velocidadMovimiento(valor){
-		velocidad = valor
+	method caminar(){
+		velocidad = caminar
+	}
+
+	method correr(){
+		velocidad = correr
 	}
 
 	method cambiarFrame() {
@@ -100,5 +103,14 @@ object haciaLaIzquierda {
 	method posicionSiguiente(posicion) = posicion.left(1)
 }
 
+object caminar{
+	method nombre() = 'Caminar'
+	const property velocidad = 300
+}
+
+object correr{
+	method nombre() = 'Correr'
+	const property velocidad = 150
+}
 
 
