@@ -2,6 +2,7 @@ import ghost.*
 import personaje.*
 import wollok.game.*
 import niveles.n1.n1
+import niveles.n2.n2
 
 object config {
 	const property nivelActual = n1

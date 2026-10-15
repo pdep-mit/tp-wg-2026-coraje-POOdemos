@@ -1,18 +1,19 @@
 import personaje.*
 import movimientos.*
+import partida.*
 
 class Soldado inherits Personaje{
     const moviendo = false
-
+    method traspasable() = true
     
     method patrullar(){
         
         
-        game.onTick(5000,"cambiarDireccionSoldado",{
-            if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
-        })
+        // partida.cadaMs(5000,"cambiarDireccionSoldado",{
+        //     if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+        // })
 
-        game.onTick(200, "animacionSoldado", {
+        partida.cadaMs(200, "animacionSoldado", {
             if (moviendo) {
                 self.cambiarFrame()
             }
@@ -24,7 +25,7 @@ class Soldado inherits Personaje{
     }
 
     method vigilar(personaje) {
-        game.onTick(200, "observarEnemigo", {
+        partida.cadaMs(200, "observarEnemigo", {
             if (vivo) self.detectoA(personaje)
         })
     }
@@ -32,13 +33,12 @@ class Soldado inherits Personaje{
 
     method detectoA(personaje) {
 
-        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) and not self.hayObjetoEnMedio(personaje.position())) {
+        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) ){//and not self.hayObjetoEnMedio(personaje.position())) {
             self.modoAlerta(personaje)
         } 
     }
 
     method modoAlerta(personaje) {
-        game.removeTickEvent("observar")
 		self.quedarseQuieto()
         self.cambiarImagen('personajes/Soldado/Apuntar/'+direccionMirando.nombre()+'.png')
         game.sound('sonidos/arma_soldado.mp3').play()
