@@ -4,6 +4,7 @@ import movimientos.*
 class Soldado inherits Personaje{
     const moviendo = false
 
+    
     method patrullar(){
         
         

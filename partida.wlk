@@ -54,5 +54,5 @@ object pantallaDerrota {
 
 object pantallaMuerte {
 	const property position = game.origin()
-	method image() = "objetos/Camara muerte2.png"
+	method image() = "objetos/Camara muerte.png"
 }

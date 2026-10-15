@@ -11,30 +11,30 @@ describe "Movimiento de un personaje" {
 
   test "se mueve a la celda siguiente si está libre" {
     ghost.position(game.at(5, 5))
-    movimiento.mover(ghost, haciaArriba)
+    movimiento.mover(ghost)
     assert.equals(game.at(5, 6), ghost.position())
   }
 
   test "no se mueve si en la celda siguiente hay un obstáculo" {
     ghost.position(game.at(1, 5))
-    movimiento.mover(ghost, haciaLaIzquierda)
+    movimiento.mover(ghost)
     assert.equals(game.at(1, 5), ghost.position())
   }
 
   test "no se mueve fuera de los límites del mapa" {
     ghost.position(game.at(5, 0))
-    movimiento.mover(ghost, haciaAbajo)
+    movimiento.mover(ghost)
     assert.equals(game.at(5, 0), ghost.position())
   }
 
   test "mira hacia la dirección elegida aunque no pueda avanzar" {
     ghost.position(game.at(1, 5))
-    movimiento.mover(ghost, haciaLaIzquierda)
+    movimiento.mover(ghost)
     assert.equals("Izquierda", ghost.mirandoHacia())
   }
 }
 describe "Muerte del jugador" {
-  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = 'Arriba')
+  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = haciaArriba)
 
   test "el fantasma empieza vivo y la partida no está pausada" {
     assert.that(ghost.vivo())
@@ -46,7 +46,7 @@ describe "Muerte del jugador" {
     ghost.morir()
     assert.notThat(ghost.vivo())
     assert.that(partida.estaPausada())
-  }
+  }   
 
   test "pisar una trampa mata al fantasma" {
     game.addVisual(ghost)
