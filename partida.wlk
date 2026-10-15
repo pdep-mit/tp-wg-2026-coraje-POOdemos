@@ -39,10 +39,8 @@ object partida {
     	game.removeTickEvent('animacionGhost')
     	game.removeTickEvent('mostrarPosicion')
     	game.removeTickEvent('cambiar camara')
-
-		game.clear()
 		pausada = false
-		config.iniciarPartida()
+		config.reiniciarPartida()
 	}
 }
 
@@ -54,5 +52,5 @@ object pantallaDerrota {
 
 object pantallaMuerte {
 	const property position = game.origin()
-	method image() = "objetos/Camara muerte2.png"
+	method image() = "objetos/Camara muerte.png"
 }

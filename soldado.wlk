@@ -4,13 +4,14 @@ import partida.*
 
 class Soldado inherits Personaje{
     const moviendo = false
-
+    method traspasable() = true
+    
     method patrullar(){
         
         
-        partida.cadaMs(5000,"cambiarDireccionSoldado",{
-            if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
-        })
+        // partida.cadaMs(5000,"cambiarDireccionSoldado",{
+        //     if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+        // })
 
         partida.cadaMs(200, "animacionSoldado", {
             if (moviendo) {
@@ -32,7 +33,7 @@ class Soldado inherits Personaje{
 
     method detectoA(personaje) {
 
-        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) and not self.hayObjetoEnMedio(personaje.position())) {
+        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) ){//and not self.hayObjetoEnMedio(personaje.position())) {
             self.modoAlerta(personaje)
         } 
     }

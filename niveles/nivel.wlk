@@ -49,20 +49,20 @@ class Nivel {
 	method colocarObjeto(tipo, x, y) {
 		if (tipo == 1) {
 			const barril = new Barril()
-			game.addVisual(barril)
 			barril.position(game.at(x, y))
+			game.addVisual(barril)
 		}
 		else if (tipo == 2) {
 			const enemigo = new Soldado(direccionMirando = haciaLaIzquierda, sujeto = 'Soldado')
-			game.addVisual(enemigo)
 			enemigo.position(game.at(x, y))
+			game.addVisual(enemigo)
 			enemigo.patrullar()
 			enemigo.vigilar(ghost)
 			enemigos.add(enemigo)
 		}
 		else if (tipo == 3) {
-			game.addVisual(ghost)
 			ghost.position(game.at(x, y))
+			game.addVisual(ghost)
 		}
 		else if (tipo == 4) {
 			const plano = new Plano()
@@ -82,7 +82,7 @@ class Nivel {
 	}
 
 	method enemigoEn(posicion){ // Devuelve el soldado que esta en la posicion
-		return enemigos.findOrDefault ({soldado => soldado.vivo() && soldado.position().x() == posicion.x() && soldado.position().y() == posicion.y()},null)
+		return enemigos.findOrDefault ({soldado => soldado.vivo() && game.onSameCell(soldado.position(),posicion)},null)
 	}
 
 }

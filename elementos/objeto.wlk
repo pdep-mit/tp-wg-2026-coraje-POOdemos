@@ -4,4 +4,6 @@ class Objeto {
   method nombreImagen() = "Objeto"
 
   method image() = "objetos/" + self.nombreImagen() + ".png"
+
+  method traspasable() = true
 }

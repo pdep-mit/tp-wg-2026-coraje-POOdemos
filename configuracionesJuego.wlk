@@ -1,7 +1,8 @@
 import ghost.*
 import personaje.*
 import wollok.game.*
-import niveles.n1.*
+import niveles.n1.n1
+import niveles.n2.n2
 
 object config {
 	var property nivelActual = n1
@@ -45,6 +46,13 @@ object config {
 	method avanzarNivel(){
 		indiceActual = indiceActual + 1
         nivelActual = listaNiveles.get(indiceActual)
+		game.clear()
+		self.iniciarPartida()
+	}
+
+	method reiniciarPartida(){
+		indiceActual = 0
+		nivelActual = n1
 		game.clear()
 		self.iniciarPartida()
 	}

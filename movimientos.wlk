@@ -14,14 +14,14 @@ object movimiento {
 	}
 
 	method esPosicionValida(posicion) {
-		return posicion.x().between(0, config.anchoMaximo() - 1) &&
-		posicion.y().between(0, config.alturaMaxima() - 1) && self.puedeMoverseA(posicion)
+		return 
+		posicion.x().between(0, config.anchoMaximo() - 1) &&
+		posicion.y().between(0, config.alturaMaxima() - 1) && 
+		self.puedeMoverseA(posicion)
 	}
 
 	method puedeMoverseA(posicionNueva) {
-		const valores = [1]
-    	const fila = config.mapa().get(posicionNueva.y())
-    	return not valores.contains(fila.get(posicionNueva.x()))  // falta
+		return game.getObjectsIn(posicionNueva).all({ obj => obj.traspasable() }) // falta
 	}
 
 	method matar(personaje){
