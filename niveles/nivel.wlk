@@ -3,6 +3,7 @@ import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
 import elementos.pared.Pared
+import elementos.meta.Meta
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -24,6 +25,7 @@ class Nivel {
 	// 3 = Ghost
 	// 4 = Plano
 	// 5 = Trampa
+	// 6 = Meta
 
 	
 
@@ -71,6 +73,11 @@ class Nivel {
 			const trampa = new Trampa()
 			game.addVisual(trampa)
 			trampa.position(game.at(x, y))
+		}
+		else if (tipo == 6) {
+			const meta = new Meta()
+			game.addVisual(meta)
+			meta.position(game.at(x, y))
 		}
 	}
 

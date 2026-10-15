@@ -1,10 +1,12 @@
 import ghost.*
 import personaje.*
 import wollok.game.*
-import niveles.n1.n1
+import niveles.n1.*
 
 object config {
-	const property nivelActual = n1
+	var property nivelActual = n1
+	const property listaNiveles = [n1,n2]
+	var indiceActual = 0
 	method mapa() = nivelActual.mapa()
 	method alturaMaxima() = nivelActual.alto()
 	method anchoMaximo() = nivelActual.ancho()
@@ -38,5 +40,12 @@ object config {
 			elementoQueChoque => elementoQueChoque.interactuarCon(ghost)
 		})
 		//game.boardGround("fondo.png")
+	}
+
+	method avanzarNivel(){
+		indiceActual = indiceActual + 1
+        nivelActual = listaNiveles.get(indiceActual)
+		game.clear()
+		self.iniciarPartida()
 	}
 }
