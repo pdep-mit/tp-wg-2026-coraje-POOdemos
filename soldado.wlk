@@ -37,8 +37,10 @@ class Soldado inherits Personaje{
     }
 
     method modoAlerta(personaje) {
+        game.removeTickEvent("observar")
 		self.quedarseQuieto()
         self.cambiarImagen('personajes/Soldado/Apuntar/'+direccionMirando.nombre()+'.png')
+        game.sound('sonidos/arma_soldado.mp3').play()
         personaje.morir()
 	}
 

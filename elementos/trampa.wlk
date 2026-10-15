@@ -5,6 +5,7 @@ class Trampa inherits Objeto {
 
   // Polimorfismo: igual que Plano, responde al mismo mensaje que usa config (onCollideDo)
   method interactuarCon(personaje) {
+    game.sound('sonidos/trampa_caida.mp3').play()
     personaje.morir()
   }
 }

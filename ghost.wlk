@@ -89,5 +89,6 @@ class Ghost inherits Personaje{
   			partida.terminarConDerrota(self)
   		}
 		self.cambiarImagen('personajes/Ghost/Morir.png')
+		game.sound('sonidos/ghost_quejido.mp3').play()
   	}
 }
