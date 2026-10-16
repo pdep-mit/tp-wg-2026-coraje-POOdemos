@@ -12,14 +12,6 @@ class Soldado inherits Personaje{
         //     if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
         // })
 
-        partida.cadaMs(200, "animacionSoldado", {
-            if (moviendo) {
-                self.cambiarFrame()
-            }
-            else {
-                self.quedarseQuieto()
-            }
-        })
 
     }
 

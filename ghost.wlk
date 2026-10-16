@@ -1,4 +1,5 @@
 import UI.indicadorPlano.indicadorPlano
+import UI.vida.vida
 import UI.estadoGhost.estadoGhost
 import personaje.*
 import movimientos.*
@@ -13,7 +14,17 @@ class Ghost inherits Personaje{
 
 	var property tienePlano = false
 
+	method rutaImagenMovimiento() = "personajes/Ghost/" + velocidad.nombre() + "/" + direccionMirando.nombre() + ".gif"
 
+	method actualizarImagen() {
+		if (vivo) {
+			if (self.teclaMovimientoSeleccionada()) {
+				self.cambiarImagen(self.rutaImagenMovimiento())
+			} else {
+				self.quedarseQuieto()
+			}
+		}
+	}
 
     method configurarTeclas() {
 		
@@ -38,14 +49,10 @@ class Ghost inherits Personaje{
 
 		self.iniciarMovimiento()
 		
-		partida.cadaMs(200, "animacionGhost", {
-            if (self.teclaMovimientoSeleccionada()) {
-                self.cambiarFrame()
-            }
-			else{
-				self.quedarseQuieto()
-			}
-        })
+
+		partida.cadaMs(100, "imagenGhost", {
+			self.actualizarImagen()
+		})
 
 		partida.cadaMs(300, "mostrarPosicion", {
 			self.mostrarPosicion()
@@ -58,6 +65,7 @@ class Ghost inherits Personaje{
     	partida.cadaMs(
         	(self.velocidad().velocidad()),"moverGhost",{ 
             	if (self.teclaMovimientoSeleccionada()) movimiento.mover(self)
+				else self.quedarseQuieto()
         	}
     	)
 	}
@@ -96,7 +104,9 @@ class Ghost inherits Personaje{
   			partida.terminarConDerrota(self)
   		}
 		self.cambiarImagen('personajes/Ghost/Morir.png')
+
 		game.sound('sonidos/ghost_quejido.mp3').play()
 		estadoGhost.cambiarAMuerto()
+		vida.cambiarAMuerto()
   	}
 }

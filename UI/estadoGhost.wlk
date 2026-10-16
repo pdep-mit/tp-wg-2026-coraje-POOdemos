@@ -2,13 +2,13 @@ import configuracionesJuego.config
 
 object estadoGhost {
     var property position = game.at(config.anchoMaximo()-2,0)
-    var property image = "objetos/EstadoBien.png"
+    var property image = "UI/EstadoBien.gif"
 
     method cambiarAMuerto(){
-        image = "objetos/EstadoMal.png"
+        image = "UI/EstadoMal.png"
     }
 
     method reiniciar(){
-        image = "objetos/EstadoBien.png"
+        image = "UI/EstadoBien.gif"
     }
 }

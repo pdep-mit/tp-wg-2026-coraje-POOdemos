@@ -1,3 +1,4 @@
+import UI.vida.*
 import UI.fondo.*
 import UI.estadoGhost.estadoGhost
 import UI.indicadorPlano.indicadorPlano
@@ -46,8 +47,11 @@ class Nivel {
 		})
         indicadorPlano.reiniciar()
 		estadoGhost.reiniciar()
+		vida.reiniciar()
+
 		game.addVisual(indicadorPlano)
 		game.addVisual(estadoGhost)
+		game.addVisual(vida)
 	}
 
 	method colocarObjeto(tipo, x, y) {

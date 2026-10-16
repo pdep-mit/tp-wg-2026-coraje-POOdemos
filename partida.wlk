@@ -46,11 +46,11 @@ object partida {
 
 object pantallaDerrota {
 	const property position = game.at(0,2)
-	method image() = "objetos/GameOver.png"
+	method image() = "UI/GameOver.png"
 	method interactuarCon(personaje) {}
 }
 
 object pantallaMuerte {
 	const property position = game.at(0,2)
-	method image() = "objetos/Camara muerte.png"
+	method image() = "UI/Camara muerte.png"
 }

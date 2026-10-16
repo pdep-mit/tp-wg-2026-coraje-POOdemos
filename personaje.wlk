@@ -3,11 +3,7 @@ import wollok.game.*
 
 class Personaje {
 	var property position = game.origin()
-	var frameActual = 0
-    const maxFrames = 4
 
-	var etapaCiclo = 0
-	const maxetapaCiclo = 11
 
 	var property velocidad = caminar
 	const sujeto
@@ -21,23 +17,19 @@ class Personaje {
     	if (imagenEvento != null) {
         	return imagenEvento
     	}
-    	return "personajes/"+sujeto+"/"+velocidad.nombre()+"/"+direccionMirando.nombre()+"/"+etapaCiclo+".png"
+    	return "personajes/"+sujeto+"/Quieto/"+direccionMirando.nombre()+".png"
 	}
 	
 	method cambiarImagen(unaImagen) {
 	    imagenEvento = unaImagen
 	}
 	
-	method resetearImagen() {
-	    imagenEvento = null
-	}
-
 	method mirarHacia(direccion){
 		direccionMirando = direccion
 	}
 
 	method quedarseQuieto(){
-		etapaCiclo = 0
+		imagenEvento = null
 	}
 
 	method caminar(){
@@ -48,15 +40,6 @@ class Personaje {
 		velocidad = correr
 	}
 
-	method cambiarFrame() {
-        frameActual = (frameActual + 1) % maxFrames
-        
-		if (etapaCiclo != maxetapaCiclo)
-			etapaCiclo += 1
-		else etapaCiclo = 1
-    }
-
-
 	method mostrarPosicion() {
 		debug.say(self, "Posición: " + self.position())
 	}
@@ -65,7 +48,6 @@ class Personaje {
 object haciaArriba {
 
 	method puedeVer(soldado,miPos, otroPos) {
-        //soldado.mirarHacia('Arriba')
         return miPos.y() < otroPos.y() and miPos.x() == otroPos.x()
     }
 
@@ -75,7 +57,6 @@ object haciaArriba {
 
 object haciaAbajo {
 	method puedeVer(soldado,miPos, otroPos) {
-        //soldado.mirarHacia('Abajo')
         return miPos.y() > otroPos.y() and miPos.x() == otroPos.x()
     }
 
@@ -85,7 +66,6 @@ object haciaAbajo {
 
 object haciaLaDerecha {
 	method puedeVer(soldado,miPos, otroPos) {
-        //soldado.mirarHacia('Derecha')
         return miPos.x() < otroPos.x() and miPos.y() == otroPos.y()
     }
 
@@ -95,7 +75,6 @@ object haciaLaDerecha {
 
 object haciaLaIzquierda {
 	method puedeVer(soldado,miPos, otroPos) {
-        //soldado.mirarHacia('Izquierda')
         return miPos.x() > otroPos.x() and miPos.y() == otroPos.y()
     }
 
