@@ -1,4 +1,5 @@
 import UI.indicadorPlano.indicadorPlano
+import UI.estadoGhost.estadoGhost
 import personaje.*
 import movimientos.*
 import partida.*
@@ -96,5 +97,6 @@ class Ghost inherits Personaje{
   		}
 		self.cambiarImagen('personajes/Ghost/Morir.png')
 		game.sound('sonidos/ghost_quejido.mp3').play()
+		estadoGhost.cambiarAMuerto()
   	}
 }

@@ -1,3 +1,5 @@
+import UI.fondo.*
+import UI.estadoGhost.estadoGhost
 import UI.indicadorPlano.indicadorPlano
 import elementos.plano.Plano
 import elementos.barril.Barril
@@ -31,9 +33,9 @@ class Nivel {
 
 	method crear(personajeJugable) {
 		ghost = personajeJugable
-		indicadorPlano.reiniciar()       
+		game.addVisual(fondo)
 
-		var y = alto - 1
+		var y = alto+1
 		mapa.forEach({ fila =>
 			var x = 0
 			fila.forEach({ tipo =>
@@ -43,7 +45,9 @@ class Nivel {
 			y -= 1
 		})
         indicadorPlano.reiniciar()
+		estadoGhost.reiniciar()
 		game.addVisual(indicadorPlano)
+		game.addVisual(estadoGhost)
 	}
 
 	method colocarObjeto(tipo, x, y) {

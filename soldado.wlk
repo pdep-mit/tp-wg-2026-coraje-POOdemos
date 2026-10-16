@@ -5,7 +5,6 @@ import partida.*
 class Soldado inherits Personaje{
     const moviendo = false
     method traspasable() = true
-    
     method patrullar(){
         
         
@@ -90,6 +89,7 @@ class Soldado inherits Personaje{
     method morir(){
         vivo = false
         self.cambiarImagen('personajes/Soldado/Morir.png')
+
     }
 
 }

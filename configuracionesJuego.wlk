@@ -21,7 +21,7 @@ object config {
 
 		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]
 		// Si elejis ancho 20 entonces irá de 0 a 19
-		game.height(self.alturaMaxima())
+		game.height(self.alturaMaxima()+2)
 		game.width(self.anchoMaximo())
 
 		self.iniciarPartida()
