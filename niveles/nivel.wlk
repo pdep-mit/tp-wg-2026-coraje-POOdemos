@@ -1,3 +1,4 @@
+import juggernaut.*
 import UI.vida.*
 import UI.fondo.*
 import UI.estadoGhost.estadoGhost
@@ -20,7 +21,6 @@ class Nivel {
     
 
 	var ghost = null
-	const enemigos = []
 
 	// Ref :
 	// 1 = Barril
@@ -29,6 +29,7 @@ class Nivel {
 	// 4 = Plano
 	// 5 = Trampa
 	// 6 = Meta
+	// 7 = Juggernaut
 
 	
 
@@ -61,12 +62,11 @@ class Nivel {
 			game.addVisual(barril)
 		}
 		else if (tipo == 2) {
-			const enemigo = new Soldado(direccionMirando = haciaLaIzquierda, sujeto = 'Soldado')
+			const enemigo = new Soldado(direccionMirando = haciaLaIzquierda)
 			enemigo.position(game.at(x, y))
 			game.addVisual(enemigo)
 			enemigo.patrullar()
 			enemigo.vigilar(ghost)
-			enemigos.add(enemigo)
 		}
 		else if (tipo == 3) {
 			ghost.position(game.at(x, y))
@@ -87,10 +87,14 @@ class Nivel {
 			game.addVisual(meta)
 			meta.position(game.at(x, y))
 		}
+		else if(tipo == 7){
+			const juggernaut = new Juggernaut(direccionMirando = haciaLaDerecha)
+			game.addVisual(juggernaut)
+			juggernaut.position(game.at(x,y))
+			juggernaut.patrullar()
+			juggernaut.vigilar(ghost)
+		}
 	}
 
-	method enemigoEn(posicion){ // Devuelve el soldado que esta en la posicion
-		return enemigos.findOrDefault ({soldado => soldado.vivo() && game.onSameCell(soldado.position(),posicion)},null)
-	}
 
 }

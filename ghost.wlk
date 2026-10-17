@@ -47,6 +47,12 @@ class Ghost inherits Personaje{
 
 		keyboard.z().onPressDo({movimiento.matar(self)})
 
+		keyboard.r().onPressDo({
+    		if (!self.vivo()) {
+        		partida.reiniciar()
+    		}
+		})
+
 		self.iniciarMovimiento()
 		
 
@@ -58,7 +64,7 @@ class Ghost inherits Personaje{
 			self.mostrarPosicion()
 		})
 
-
+		
 	}
 
 	method iniciarMovimiento() {

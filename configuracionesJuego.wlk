@@ -13,7 +13,7 @@ object config {
 	method anchoMaximo() = nivelActual.ancho()
 	method alturaDelSuelo() = 0
 
-	var ghost = new Ghost(sujeto='Ghost', direccionMirando = haciaAbajo)
+	var ghost = new Ghost(direccionMirando = haciaAbajo)
 
 	method configurarJuego() {
 		game.title("Nombre del juego")
@@ -31,7 +31,7 @@ object config {
 
 	// Se llama al empezar y cada vez que se reinicia
 	method iniciarPartida() {
-		ghost = new Ghost(sujeto='Ghost', direccionMirando = haciaAbajo)
+		ghost = new Ghost(direccionMirando = haciaAbajo)
 		ghost.configurarTeclas()
 
 

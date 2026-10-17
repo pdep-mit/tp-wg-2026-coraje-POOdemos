@@ -3,15 +3,21 @@ import movimientos.*
 import partida.*
 
 class Soldado inherits Personaje{
-    const moviendo = false
+    override method sujeto() = 'Soldado'
+
+    method esEnemigo() = true
+
+    method puedeMorir() = true
+    
     method traspasable() = true
+
+    method rangoVision() = 5 // Rango de vision: A cuantos bloques de distancia te puede ver
+
     method patrullar(){
         
-        
-        // partida.cadaMs(5000,"cambiarDireccionSoldado",{
-        //     if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
-        // })
-
+        partida.cadaMs(5000,"cambiarDireccionSoldado",{
+            if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+        })
 
     }
 
@@ -24,14 +30,14 @@ class Soldado inherits Personaje{
 
     method detectoA(personaje) {
 
-        if (self.position().distance(personaje.position()) < 5 and direccionMirando.puedeVer(self,self.position(), personaje.position()) ){//and not self.hayObjetoEnMedio(personaje.position())) {
+        if (self.position().distance(personaje.position()) < self.rangoVision() and direccionMirando.puedeVer(self,self.position(), personaje.position()) ){//and not self.hayObjetoEnMedio(personaje.position())) {
             self.modoAlerta(personaje)
         } 
     }
 
     method modoAlerta(personaje) {
 		self.quedarseQuieto()
-        self.cambiarImagen('personajes/Soldado/Apuntar/'+direccionMirando.nombre()+'.png')
+        self.cambiarImagen('personajes/'+self.sujeto()+'/Apuntar/'+direccionMirando.nombre()+'.png')
         game.sound('sonidos/arma_soldado.mp3').play()
         personaje.morir()
 	}
@@ -79,9 +85,11 @@ class Soldado inherits Personaje{
     }
 
     method morir(){
-        vivo = false
-        self.cambiarImagen('personajes/Soldado/Morir.png')
-
+        if (vivo){
+            vivo = false
+            self.cambiarImagen('personajes/Soldado/Morir.png')
+        }
+        
     }
 
 }

@@ -16,7 +16,7 @@ object movimiento {
 	method esPosicionValida(posicion) {
 		return 
 		posicion.x().between(0, config.anchoMaximo() - 1) &&
-		posicion.y().between(0, config.alturaMaxima() - 1) && 
+		posicion.y().between(0, config.alturaMaxima()+1) && 
 		self.puedeMoverseA(posicion)
 	}
 
@@ -25,12 +25,15 @@ object movimiento {
 	}
 
 	method matar(personaje){
+		const posicionObjetivo = personaje.direccionMirando().posicionSiguiente(personaje.position())
 
-		const enemigo = config.nivelActual().enemigoEn(personaje.direccionMirando().posicionSiguiente(personaje.position()))
+		const enemigo = game.getObjectsIn(posicionObjetivo).findOrDefault({ obj => obj.esEnemigo() }, null)
 
 		if (enemigo != null && personaje.vivo()){
-			partida.camaraMuerte()
-			enemigo.morir()
+			if (enemigo.puedeMorir()){
+				partida.camaraMuerte()
+				enemigo.morir()}
+			
 		}
 		else{
 			game.say(personaje,'No hay enemigos cerca')

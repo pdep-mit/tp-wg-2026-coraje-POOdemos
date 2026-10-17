@@ -6,18 +6,20 @@ class Personaje {
 
 
 	var property velocidad = caminar
-	const sujeto
+	
 	var property vivo = true
 
 	var imagenEvento = null
 
 	var property direccionMirando
 
+	method sujeto() = 'Ghost'
+
 	method image() {
     	if (imagenEvento != null) {
         	return imagenEvento
     	}
-    	return "personajes/"+sujeto+"/Quieto/"+direccionMirando.nombre()+".png"
+    	return "personajes/"+self.sujeto()+"/Quieto/"+direccionMirando.nombre()+".png"
 	}
 	
 	method cambiarImagen(unaImagen) {

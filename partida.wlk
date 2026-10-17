@@ -29,16 +29,10 @@ object partida {
 		self.pausar()
 		game.say(personaje, "¡Morí!")
 		game.addVisual(pantallaDerrota)
-		keyboard.r().onPressDo({ self.reiniciar() })
 	}
 
 	method reiniciar() {
-		game.removeTickEvent('animacionSoldado')
-    	game.removeTickEvent('observarEnemigo')
-    	game.removeTickEvent('moverGhost')
-    	game.removeTickEvent('animacionGhost')
-    	game.removeTickEvent('mostrarPosicion')
-    	game.removeTickEvent('cambiar camara')
+		
 		pausada = false
 		config.reiniciarPartida()
 	}
