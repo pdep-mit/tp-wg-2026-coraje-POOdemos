@@ -4,6 +4,7 @@ import wollok.game.*
 class Personaje {
 	var property position = game.origin()
 
+	
 
 	var property velocidad = caminar
 	
@@ -22,6 +23,8 @@ class Personaje {
     	return "personajes/"+self.sujeto()+"/Quieto/"+direccionMirando.nombre()+".png"
 	}
 	
+	method rutaImagenMovimiento() = "personajes/"+self.sujeto()+"/" + velocidad.nombre() + "/" + direccionMirando.nombre() + ".gif"
+
 	method cambiarImagen(unaImagen) {
 	    imagenEvento = unaImagen
 	}

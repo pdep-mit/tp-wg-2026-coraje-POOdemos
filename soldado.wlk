@@ -16,9 +16,32 @@ class Soldado inherits Personaje{
     method patrullar(){
         
         partida.cadaMs(5000,"cambiarDireccionSoldado",{
-            if (vivo) direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+            if (vivo) {
+                direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+
+                game.schedule(3000, { => self.avanzar() })
+
+            }
         })
 
+    }
+
+    method avanzar() {
+        if (vivo) {
+            self.cambiarImagen(self.rutaImagenMovimiento())
+
+            var pasosDados = 0
+
+            partida.cadaMs(300, "pasosSoldado", {
+                if (vivo and pasosDados < 4) {
+                    movimiento.mover(self)
+                    pasosDados += 1
+                } else {
+                    game.removeTickEvent("pasosSoldado")
+                    if (vivo) self.quedarseQuieto()
+                }
+            })
+        }
     }
 
     method vigilar(personaje) {

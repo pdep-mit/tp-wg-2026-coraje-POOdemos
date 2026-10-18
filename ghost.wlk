@@ -14,8 +14,6 @@ class Ghost inherits Personaje{
 
 	var property tienePlano = false
 
-	method rutaImagenMovimiento() = "personajes/Ghost/" + velocidad.nombre() + "/" + direccionMirando.nombre() + ".gif"
-
 	method actualizarImagen() {
 		if (vivo) {
 			if (self.teclaMovimientoSeleccionada()) {
