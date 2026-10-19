@@ -1,4 +1,5 @@
 import UI.indicadorPlano.indicadorPlano
+import UI.indicadorLlave.indicadorLlave
 import UI.vida.vida
 import UI.estadoGhost.estadoGhost
 import personaje.*
@@ -13,6 +14,7 @@ class Ghost inherits Personaje{
     var shiftPresionado = false
 
 	var property tienePlano = false
+	var property tieneLlave = false
 
 	method actualizarImagen() {
 		if (vivo) {
@@ -100,6 +102,11 @@ class Ghost inherits Personaje{
 	method agarrarPlano() {
 		tienePlano = true
 		indicadorPlano.planoRecogido()
+	}
+
+	method agarrarLlave() {
+		tieneLlave = true
+		indicadorLlave.llaveRecogida()
 	}
 
 	method morir() {

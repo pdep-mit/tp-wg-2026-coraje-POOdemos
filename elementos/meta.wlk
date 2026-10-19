@@ -8,3 +8,14 @@ class Meta inherits Objeto {
     config.avanzarNivel()
   }
 }
+
+class MetaCerrada inherits Objeto {
+  override method nombreImagen() = "Meta"
+
+  method interactuarCon(personaje) {
+    if (personaje.tieneLlave()) config.avanzarNivel()
+    else game.say(personaje, "Necesito la llave")
+  }
+}
+
+

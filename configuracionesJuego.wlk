@@ -3,10 +3,11 @@ import personaje.*
 import wollok.game.*
 import niveles.n1.n1
 import niveles.n2.n2
+import niveles.n3.n3
 
 object config {
 	var property nivelActual = n1
-	const property listaNiveles = [n1,n2]
+	const property listaNiveles = [n1,n2,n3]
 	var indiceActual = 0
 	method mapa() = nivelActual.mapa()
 	method alturaMaxima() = nivelActual.alto()

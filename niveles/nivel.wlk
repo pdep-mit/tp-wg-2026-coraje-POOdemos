@@ -3,11 +3,14 @@ import UI.vida.*
 import UI.fondo.*
 import UI.estadoGhost.estadoGhost
 import UI.indicadorPlano.indicadorPlano
+import UI.indicadorLlave.indicadorLlave
 import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
 import elementos.pared.Pared
 import elementos.meta.Meta
+import elementos.meta.MetaCerrada
+import elementos.llave.Llave
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -30,6 +33,8 @@ class Nivel {
 	// 5 = Trampa
 	// 6 = Meta
 	// 7 = Juggernaut
+	// 8 = Llave
+	// 9 = Meta Cerrada
 
 	
 
@@ -47,10 +52,12 @@ class Nivel {
 			y -= 1
 		})
         indicadorPlano.reiniciar()
+		indicadorLlave.reiniciar()
 		estadoGhost.reiniciar()
 		vida.reiniciar()
 
 		game.addVisual(indicadorPlano)
+		game.addVisual(indicadorLlave)
 		game.addVisual(estadoGhost)
 		game.addVisual(vida)
 	}
@@ -93,6 +100,16 @@ class Nivel {
 			juggernaut.position(game.at(x,y))
 			juggernaut.patrullar()
 			juggernaut.vigilar(ghost)
+		}
+		else if (tipo == 8) {
+			const llave = new Llave()
+			game.addVisual(llave)
+			llave.position(game.at(x, y))
+		}
+		else if (tipo == 9) {
+			const metaCerrada = new MetaCerrada()
+			game.addVisual(metaCerrada)
+			metaCerrada.position(game.at(x, y))
 		}
 	}
 
