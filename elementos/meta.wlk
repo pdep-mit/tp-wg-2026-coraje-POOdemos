@@ -20,7 +20,7 @@ class MetaCerrada inherits Objeto {
 }
 
 class MetaFalsa inherits Objeto {
-  override method nombreImagen() = "Meta"   // misma imagen, así no se la distingue
+  override method nombreImagen() = "Meta"   
 
   method interactuarCon(personaje) {
     config.irANivel(n4)

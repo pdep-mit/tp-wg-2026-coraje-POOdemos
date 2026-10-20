@@ -7,7 +7,9 @@ import UI.indicadorLlave.indicadorLlave
 import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
-import elementos.pared.Pared
+import elementos.pared.Pared1
+import elementos.pared.Pared2
+import elementos.pared.Pared3
 import elementos.meta.Meta
 import elementos.meta.MetaCerrada
 import elementos.llave.Llave
@@ -36,7 +38,10 @@ class Nivel {
 	// 7 = Juggernaut
 	// 8 = Llave
 	// 9 = Meta Cerrada
-
+	// 10 = Nivel trampa
+	// 11 = Pared 1
+	// 12 = Pared 2
+	// 13 = Pared 3
 	
 
 	method crear(personajeJugable) {
@@ -52,8 +57,7 @@ class Nivel {
 			})
 			y -= 1
 		})
-        indicadorPlano.reiniciar()
-		indicadorLlave.reiniciar()
+
 		estadoGhost.reiniciar()
 		vida.reiniciar()
 
@@ -113,10 +117,25 @@ class Nivel {
 			metaCerrada.position(game.at(x, y))
 		}
 		else if (tipo == 10) {                        // 10 = Meta falsa (lleva a n4)
-		const metaFalsa = new MetaFalsa()
-		game.addVisual(metaFalsa)
-		metaFalsa.position(game.at(x, y))
+			const metaFalsa = new MetaFalsa()
+			game.addVisual(metaFalsa)
+			metaFalsa.position(game.at(x, y))
 	    }
+		else if (tipo == 11) {
+			const pared = new Pared1()
+			game.addVisual(pared)
+			pared.position(game.at(x, y))
+		}
+		else if (tipo == 12) {
+			const pared = new Pared2()
+			game.addVisual(pared)
+			pared.position(game.at(x, y))
+		}
+		else if (tipo == 13) {
+			const pared = new Pared3()
+			game.addVisual(pared)
+			pared.position(game.at(x, y))
+		}
 	}
 
 

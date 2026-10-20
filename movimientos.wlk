@@ -15,8 +15,8 @@ object movimiento {
 
 	method esPosicionValida(posicion) {
 		return 
-		posicion.x().between(0, config.anchoMaximo() - 1) &&
-		posicion.y().between(0, config.alturaMaxima()+1) && 
+		posicion.x().between(0, config.anchoMaximo() +2) &&
+		posicion.y().between(2, config.alturaMaxima()+1) && 
 		self.puedeMoverseA(posicion)
 	}
 
