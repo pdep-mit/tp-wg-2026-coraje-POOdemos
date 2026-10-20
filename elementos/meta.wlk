@@ -1,5 +1,6 @@
 import elementos.objeto.*
 import configuracionesJuego.*
+import niveles.n4.n4
 
 class Meta inherits Objeto {
   override method nombreImagen() = "Meta"
@@ -17,5 +18,14 @@ class MetaCerrada inherits Objeto {
     else game.say(personaje, "Necesito la llave")
   }
 }
+
+class MetaFalsa inherits Objeto {
+  override method nombreImagen() = "Meta"   // misma imagen, así no se la distingue
+
+  method interactuarCon(personaje) {
+    config.irANivel(n4)
+  }
+}
+
 
 

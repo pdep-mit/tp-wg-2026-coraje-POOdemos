@@ -15,6 +15,7 @@ import soldado.*
 import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
+import elementos.meta.MetaFalsa
 
 
 class Nivel {
@@ -111,6 +112,11 @@ class Nivel {
 			game.addVisual(metaCerrada)
 			metaCerrada.position(game.at(x, y))
 		}
+		else if (tipo == 10) {                        // 10 = Meta falsa (lleva a n4)
+		const metaFalsa = new MetaFalsa()
+		game.addVisual(metaFalsa)
+		metaFalsa.position(game.at(x, y))
+	    }
 	}
 
 
