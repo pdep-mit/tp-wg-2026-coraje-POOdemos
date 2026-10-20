@@ -57,4 +57,9 @@ object config {
 		game.clear()
 		self.iniciarPartida()
 	}
+	method irANivel(nivel) {
+		nivelActual = nivel
+		game.clear()
+		self.iniciarPartida()
+	}
 }
