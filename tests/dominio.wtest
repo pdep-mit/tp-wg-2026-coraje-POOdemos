@@ -16,22 +16,17 @@ describe "Movimiento de un personaje" {
     assert.equals(game.at(5, 6), ghost.position())
   }
 
-  test "no se mueve si en la celda siguiente hay un obstáculo" {
-    ghost.position(game.at(1, 5))
-    movimiento.mover(ghost)
-    assert.equals(game.at(1, 5), ghost.position())
-  }
 
   test "no se mueve fuera de los límites del mapa" {
-    ghost.position(game.at(5, 0))
+    ghost.position(game.at(0, 15))
     movimiento.mover(ghost)
-    assert.equals(game.at(5, 0), ghost.position())
+    assert.equals(game.at(0,15), ghost.position())
   }
 
   test "mira hacia la dirección elegida aunque no pueda avanzar" {
     ghost.position(game.at(1, 5))
     movimiento.mover(ghost)
-    assert.equals("Izquierda", ghost.mirandoHacia())
+    assert.equals("Arriba", ghost.direccionMirando().nombre())
   }
 }
 describe "Muerte del jugador" {

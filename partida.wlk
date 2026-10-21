@@ -36,7 +36,6 @@ object partida {
 
 	method terminarConVictoria(personaje){
 		self.pausar()
-		game.say(personaje,"Mision cumplida")
 		game.addVisual(pantallaEscape)
 	}
 
