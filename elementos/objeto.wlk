@@ -6,6 +6,8 @@ class Objeto {
   method image() = "objetos/" + self.nombreImagen() + ".png"
 
   method traspasable() = true
+
+  method hacerSonido() {}
   
   method esEnemigo() = false
 }

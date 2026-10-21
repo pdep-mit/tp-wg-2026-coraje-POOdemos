@@ -14,7 +14,7 @@ object config {
 	method anchoMaximo() = nivelActual.ancho()
 	method alturaDelSuelo() = 0
 
-	var ghost = new Ghost(direccionMirando = haciaAbajo)
+	var property ghost = new Ghost(direccionMirando = haciaAbajo)
 
 	method configurarJuego() {
 		game.title("Nombre del juego")

@@ -10,7 +10,15 @@ object movimiento {
 		
 		if (self.esPosicionValida(nuevaPosicion)){
 			personaje.position(nuevaPosicion)
+		} else if(personaje == config.ghost()) {
+			
+			self.reproducirSonidoObstaculo(nuevaPosicion)
 		}
+	}
+
+	method reproducirSonidoObstaculo(posicion) {
+		const obstaculos = game.getObjectsIn(posicion).filter({ obj => !obj.traspasable() })
+		if (!obstaculos.isEmpty()) obstaculos.first().hacerSonido()
 	}
 
 	method esPosicionValida(posicion) {
