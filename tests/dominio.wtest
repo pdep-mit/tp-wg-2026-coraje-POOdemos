@@ -1,13 +1,14 @@
 import wollok.game.*
 import movimientos.*
 import ghost.*
+import personaje.*
 import partida.*
 import elementos.trampa.Trampa
 import elementos.plano.Plano
 
 // Se usa el nivel1 que esta actualmente cargado para los test como referencia de las posiciones
 describe "Movimiento de un personaje" {
-  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = 'Arriba')
+  const ghost = new Ghost(direccionMirando=haciaArriba)
 
   test "se mueve a la celda siguiente si está libre" {
     ghost.position(game.at(5, 5))
@@ -34,26 +35,26 @@ describe "Movimiento de un personaje" {
   }
 }
 describe "Muerte del jugador" {
-  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = haciaArriba)
+  const ghost = new Ghost(direccionMirando=haciaArriba)
 
-  test "el fantasma empieza vivo y la partida no está pausada" {
+  test "el jugador empieza vivo y la partida no está pausada" {
     assert.that(ghost.vivo())
-    assert.notThat(partida.estaPausada())
+    assert.notThat(partida.pausada())
   }
 
-  test "al morir el fantasma deja de estar vivo y se pausa la partida" {
+  test "al morir el jugador deja de estar vivo y se pausa la partida" {
     game.addVisual(ghost)
     ghost.morir()
     assert.notThat(ghost.vivo())
-    assert.that(partida.estaPausada())
+    assert.that(partida.pausada())
   }   
 
-  test "pisar una trampa mata al fantasma" {
+  test "pisar una trampa mata al jugador" {
     game.addVisual(ghost)
     const trampa = new Trampa()
     trampa.interactuarCon(ghost)
     assert.notThat(ghost.vivo())
-    assert.that(partida.estaPausada())
+    assert.that(partida.pausada())
   }
 
   test "morir dos veces no rompe nada" {
@@ -65,7 +66,7 @@ describe "Muerte del jugador" {
 }
 
 describe "Interacción con elementos (polimorfismo)" {
-  const ghost = new Ghost(sujeto = 'Ghost', mirandoHacia = 'Arriba')
+  const ghost = new Ghost(direccionMirando=haciaArriba)
 
   test "agarrar un plano lo suma al jugador y lo saca del tablero" {
     const plano = new Plano()

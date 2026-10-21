@@ -8,6 +8,10 @@ object estadoGhost {
         image = "UI/EstadoMal.png"
     }
 
+    method cambiarAInvisible(){
+        image = "UI/EstadoInvisible.gif"
+    }
+
     method reiniciar(){
         image = "UI/EstadoBien.gif"
     }

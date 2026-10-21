@@ -8,14 +8,12 @@ import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
 import elementos.pared.Pared
-import elementos.meta.Meta
-import elementos.meta.MetaCerrada
 import elementos.llave.Llave
 import soldado.*
 import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
-import elementos.meta.MetaFalsa
+import elementos.meta.*
 import elementos.arbusto.Arbusto
 
 
@@ -44,6 +42,7 @@ class Nivel {
 		if (tipo == 15) return new Pared(imagen='Pared5')
 		if (tipo == 16) return new Pared(imagen='Pared6')
 		if (tipo == 17) return new Arbusto()
+		if (tipo == 18) return new MetaFinal()
 		return null
 	}
 

@@ -19,7 +19,7 @@ class Ghost inherits Personaje{
 	var property tieneLlave = false
 
 
-	method traspabable() = false
+	method traspasable() = false
 
 	method actualizarImagen() {
 		self.actualizarVisibilidad()
@@ -132,6 +132,12 @@ class Ghost inherits Personaje{
 
 	method actualizarVisibilidad() {
 		invisible = game.getObjectsIn(self.position()).any({ obj => obj.esArbusto() })
+		if(invisible){
+			estadoGhost.cambiarAInvisible()
+		}
+		else{
+			estadoGhost.reiniciar()
+		}
 	}
 
 }

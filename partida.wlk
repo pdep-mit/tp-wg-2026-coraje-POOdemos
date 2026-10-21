@@ -4,7 +4,7 @@ import configuracionesJuego.*
 import UI.indicadorLlave.indicadorLlave
 
 object partida {
-	var pausada = false
+	var property pausada = false
 
 	method pausar() {
 		pausada = true
@@ -33,6 +33,12 @@ object partida {
 		game.addVisual(pantallaDerrota)
 	}
 
+	method terminarConVictoria(personaje){
+		self.pausar()
+		game.say(personaje,"Mision cumplida")
+		game.addVisual(pantallaEscape)
+	}
+
 	method reiniciar() {
 		indicadorLlave.reiniciar()
 		indicadorPlano.reiniciar()
@@ -49,5 +55,10 @@ object pantallaDerrota {
 
 object pantallaMuerte {
 	const property position = game.at(0,2)
-	method image() = "UI/Camara muerte.png"
+	method image() = "UI/CamaraMuerte.png"
+}
+
+object pantallaEscape {
+	const property position = game.at(0,2)
+	method image() = "UI/CamaraEscape.png"
 }
