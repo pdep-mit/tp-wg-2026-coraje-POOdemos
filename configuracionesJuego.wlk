@@ -4,6 +4,8 @@ import wollok.game.*
 import niveles.n1.n1
 import niveles.n2.n2
 import niveles.n3.n3
+import UI.indicadorLlave.*
+import UI.indicadorPlano.*
 
 object config {
 	var property nivelActual = n1
@@ -16,6 +18,9 @@ object config {
 
 	var property ghost = new Ghost(direccionMirando = haciaAbajo)
 	var musica = null
+
+	// estado de los objetos permanentes, al pasar de nivel no se pierden
+	var property estadoCuchillo = false
 
 	method configurarJuego() {
 		game.title("Nombre del juego")
@@ -34,7 +39,7 @@ object config {
 	method iniciarPartida() {
 
 
-		ghost = new Ghost(direccionMirando = haciaAbajo)
+		ghost = new Ghost(direccionMirando = haciaAbajo, tieneCuchillo = estadoCuchillo)
 		ghost.configurarTeclas()
 
 
@@ -46,18 +51,22 @@ object config {
 		//game.boardGround("fondo.png")
 	}
 
-	method avanzarNivel(){
+	method avanzarNivel(personaje){
 		indiceActual = indiceActual + 1
         nivelActual = listaNiveles.get(indiceActual)
+		estadoCuchillo = personaje.tieneCuchillo()
+		indicadorLlave.reiniciar()
+    	indicadorPlano.reiniciar()
 		game.clear()
 		self.iniciarPartida()
 	}
 
 	method reiniciarPartida(){
-    musica.stop()
+    	musica.stop()
  		self.iniciarMusica()
 		indiceActual = 0
 		nivelActual = n1
+		estadoCuchillo = false
 		game.clear()
 		self.iniciarPartida()
 	}

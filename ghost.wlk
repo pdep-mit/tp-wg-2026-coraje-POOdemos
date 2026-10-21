@@ -1,5 +1,6 @@
 import UI.indicadorPlano.indicadorPlano
 import UI.indicadorLlave.indicadorLlave
+import UI.indicadorCuchillo.indicadorCuchillo
 import UI.vida.vida
 import UI.estadoGhost.estadoGhost
 import personaje.*
@@ -17,6 +18,7 @@ class Ghost inherits Personaje{
 
 	var property tienePlano = false
 	var property tieneLlave = false
+	var property tieneCuchillo = false
 
 
 	method traspabable() = false
@@ -51,7 +53,7 @@ class Ghost inherits Personaje{
 		keyboard.shift().onReleaseDo({ shiftPresionado = false; self.caminar() })
 		
 
-		keyboard.z().onPressDo({movimiento.matar(self)})
+		keyboard.z().onPressDo({self.matar()})
 
 		keyboard.r().onPressDo({
     		if (!self.vivo()) {
@@ -115,6 +117,11 @@ class Ghost inherits Personaje{
 		indicadorLlave.llaveRecogida()
 	}
 
+	method agarrarCuchillo() {
+		tieneCuchillo = true
+		indicadorCuchillo.cuchilloRecogido()
+	}
+
 	method morir() {
   		if (vivo) {
   			vivo = false
@@ -127,6 +134,27 @@ class Ghost inherits Personaje{
 		vida.cambiarAMuerto()
   	}
 
+	method matar(){
+		const posicionObjetivo = self.direccionMirando().posicionSiguiente(self.position())
+
+		const enemigo = game.getObjectsIn(posicionObjetivo).findOrDefault({ obj => obj.esEnemigo() }, null)
+
+		if (self.tieneCuchillo()){
+			if (enemigo != null && self.vivo()){
+				if (enemigo.puedeMorir()){
+					partida.camaraMuerte()
+					enemigo.morir()}
+				
+			}
+			else{
+				game.say(self,'No hay enemigos cerca')
+			}
+		}
+		else{
+			game.say(self,"Necesito un arma")
+		}
+
+	}
 
 	method esInvisible() = invisible
 
