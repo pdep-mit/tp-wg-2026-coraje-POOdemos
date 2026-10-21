@@ -9,15 +9,13 @@ import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
 import elementos.pared.Pared
-import elementos.meta.Meta
-import elementos.meta.MetaCerrada
 import elementos.llave.Llave
 import elementos.cuchillo.Cuchillo
 import soldado.*
 import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
-import elementos.meta.MetaFalsa
+import elementos.meta.*
 import elementos.arbusto.Arbusto
 
 
@@ -48,7 +46,8 @@ class Nivel {
 		if (tipo == 17) return new Arbusto()
 		if (tipo == 18) return new Cuchillo()
 		if (tipo == 19) return new Pared(imagen='Pared7')   // nuevo: medianera izquierda
-        if (tipo == 20) return new Pared(imagen='Pared8')   // nuevo: medianera derecha
+    if (tipo == 20) return new Pared(imagen='Pared8')   // nuevo: medianera derecha
+		if (tipo == 21) return new MetaFinal()
 		return null
 	}
 
