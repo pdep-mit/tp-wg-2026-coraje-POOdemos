@@ -47,6 +47,8 @@ class Nivel {
 		if (tipo == 16) return new Pared(imagen='Pared6')
 		if (tipo == 17) return new Arbusto()
 		if (tipo == 18) return new Cuchillo()
+		if (tipo == 19) return new Pared(imagen='Pared7')   // nuevo: medianera izquierda
+        if (tipo == 20) return new Pared(imagen='Pared8')   // nuevo: medianera derecha
 		return null
 	}
 
