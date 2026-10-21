@@ -32,21 +32,7 @@ object movimiento {
 		return game.getObjectsIn(posicionNueva).all({ obj => obj.traspasable() }) // falta
 	}
 
-	method matar(personaje){
-		const posicionObjetivo = personaje.direccionMirando().posicionSiguiente(personaje.position())
 
-		const enemigo = game.getObjectsIn(posicionObjetivo).findOrDefault({ obj => obj.esEnemigo() }, null)
-
-		if (enemigo != null && personaje.vivo()){
-			if (enemigo.puedeMorir()){
-				partida.camaraMuerte()
-				enemigo.morir()}
-			
-		}
-		else{
-			game.say(personaje,'No hay enemigos cerca')
-		}
-	}
 }
 
 

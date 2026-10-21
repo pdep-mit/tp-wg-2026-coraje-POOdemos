@@ -1,7 +1,8 @@
-import UI.indicadorPlano.*
 import wollok.game.*
 import configuracionesJuego.*
-import UI.indicadorLlave.indicadorLlave
+import UI.indicadorPlano.*
+import UI.indicadorLlave.*
+import UI.indicadorCuchillo.*
 
 object partida {
 	var property pausada = false
@@ -40,8 +41,9 @@ object partida {
 	}
 
 	method reiniciar() {
-		indicadorLlave.reiniciar()
 		indicadorPlano.reiniciar()
+		indicadorLlave.reiniciar()
+		indicadorCuchillo.reiniciar()
 		pausada = false
 		config.reiniciarPartida()
 	}

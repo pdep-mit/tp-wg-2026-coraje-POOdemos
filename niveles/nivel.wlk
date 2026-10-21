@@ -4,11 +4,13 @@ import UI.fondo.*
 import UI.estadoGhost.estadoGhost
 import UI.indicadorPlano.indicadorPlano
 import UI.indicadorLlave.indicadorLlave
+import UI.indicadorCuchillo.indicadorCuchillo
 import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
 import elementos.pared.Pared
 import elementos.llave.Llave
+import elementos.cuchillo.Cuchillo
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -43,6 +45,7 @@ class Nivel {
 		if (tipo == 16) return new Pared(imagen='Pared6')
 		if (tipo == 17) return new Arbusto()
 		if (tipo == 18) return new MetaFinal()
+		if (tipo == 19) return new Cuchillo()
 		return null
 	}
 
@@ -65,6 +68,7 @@ class Nivel {
 
         game.addVisual(indicadorPlano)
         game.addVisual(indicadorLlave)
+		game.addVisual(indicadorCuchillo)
         game.addVisual(estadoGhost)
         game.addVisual(vida)
     }

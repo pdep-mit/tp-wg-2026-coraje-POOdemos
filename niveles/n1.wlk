@@ -34,3 +34,4 @@ object n1 inherits Nivel(mapa =  [
     // 15 = Pared 5
     // 16 = Pared 6
     // 17 = Arbusto
+    // 18 = Cuchillo

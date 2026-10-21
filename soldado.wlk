@@ -107,6 +107,7 @@ class Soldado inherits Personaje{
         if (vivo){
             vivo = false
             self.cambiarImagen('personajes/Soldado/Morir.png')
+            game.sound('sonidos/muerte.wav').play()
         }
         
     }
