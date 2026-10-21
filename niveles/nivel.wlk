@@ -7,9 +7,7 @@ import UI.indicadorLlave.indicadorLlave
 import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
-import elementos.pared.Pared1
-import elementos.pared.Pared2
-import elementos.pared.Pared3
+import elementos.pared.Pared
 import elementos.meta.Meta
 import elementos.meta.MetaCerrada
 import elementos.llave.Llave
@@ -18,124 +16,80 @@ import wollok.game.*
 import personaje.*
 import configuracionesJuego.config
 import elementos.meta.MetaFalsa
+import elementos.arbusto.Arbusto
 
 
 class Nivel {
 	const property ancho
 	const property alto
 	const property mapa
-    
 
 	var ghost = null
 
-	// Ref :
-	// 1 = Barril
-	// 2 = Enemigo
-	// 3 = Ghost
-	// 4 = Plano
-	// 5 = Trampa
-	// 6 = Meta
-	// 7 = Juggernaut
-	// 8 = Llave
-	// 9 = Meta Cerrada
-	// 10 = Nivel trampa
-	// 11 = Pared 1
-	// 12 = Pared 2
-	// 13 = Pared 3
-	
-
-	method crear(personajeJugable) {
-		ghost = personajeJugable
-		game.addVisual(fondo)
-
-		var y = alto+1
-		mapa.forEach({ fila =>
-			var x = 0
-			fila.forEach({ tipo =>
-				self.colocarObjeto(tipo, x, y)
-				x += 1
-			})
-			y -= 1
-		})
-
-		estadoGhost.reiniciar()
-		vida.reiniciar()
-
-		game.addVisual(indicadorPlano)
-		game.addVisual(indicadorLlave)
-		game.addVisual(estadoGhost)
-		game.addVisual(vida)
+	method crearObjeto(tipo) {
+		if (tipo == 1) return new Barril()
+		if (tipo == 2) return self.crearSoldado()
+		if (tipo == 3) return ghost
+		if (tipo == 4) return new Plano()
+		if (tipo == 5) return new Trampa()
+		if (tipo == 6) return new Meta()
+		if (tipo == 7) return self.crearJuggernaut()
+		if (tipo == 8) return new Llave()
+		if (tipo == 9) return new MetaCerrada()
+		if (tipo == 10) return new MetaFalsa()
+		if (tipo == 11) return new Pared(imagen='Pared1')
+		if (tipo == 12) return new Pared(imagen='Pared2')
+		if (tipo == 13) return new Pared(imagen='Pared3')
+		if (tipo == 14) return new Pared(imagen='Pared4')
+		if (tipo == 15) return new Pared(imagen='Pared5')
+		if (tipo == 16) return new Pared(imagen='Pared6')
+		if (tipo == 17) return new Arbusto()
+		return null
 	}
 
+	method crear(personajeJugable) {
+        ghost = personajeJugable
+        game.addVisual(fondo)
+
+        var y = alto+1
+        mapa.forEach({ fila =>
+            var x = 0
+            fila.forEach({ tipo =>
+                self.colocarObjeto(tipo, x, y)
+                x += 1
+            })
+            y -= 1
+        })
+
+        estadoGhost.reiniciar()
+        vida.reiniciar()
+
+        game.addVisual(indicadorPlano)
+        game.addVisual(indicadorLlave)
+        game.addVisual(estadoGhost)
+        game.addVisual(vida)
+    }
+
 	method colocarObjeto(tipo, x, y) {
-		if (tipo == 1) {
-			const barril = new Barril()
-			barril.position(game.at(x, y))
-			game.addVisual(barril)
+		const objeto = self.crearObjeto(tipo)
+		if (objeto != null) {
+			objeto.position(game.at(x, y))
+			game.addVisual(objeto)
 		}
-		else if (tipo == 2) {
-			const enemigo = new Soldado(direccionMirando = haciaLaIzquierda)
-			enemigo.position(game.at(x, y))
-			game.addVisual(enemigo)
-			enemigo.patrullar()
-			enemigo.vigilar(ghost)
-		}
-		else if (tipo == 3) {
-			ghost.position(game.at(x, y))
-			game.addVisual(ghost)
-		}
-		else if (tipo == 4) {
-			const plano = new Plano()
-			game.addVisual(plano)
-			plano.position(game.at(x, y))
-		}
-		else if (tipo == 5) {
-			const trampa = new Trampa()
-			game.addVisual(trampa)
-			trampa.position(game.at(x, y))
-		}
-		else if (tipo == 6) {
-			const meta = new Meta()
-			game.addVisual(meta)
-			meta.position(game.at(x, y))
-		}
-		else if(tipo == 7){
-			const juggernaut = new Juggernaut(direccionMirando = haciaLaDerecha)
-			game.addVisual(juggernaut)
-			juggernaut.position(game.at(x,y))
-			juggernaut.patrullar()
-			juggernaut.vigilar(ghost)
-		}
-		else if (tipo == 8) {
-			const llave = new Llave()
-			game.addVisual(llave)
-			llave.position(game.at(x, y))
-		}
-		else if (tipo == 9) {
-			const metaCerrada = new MetaCerrada()
-			game.addVisual(metaCerrada)
-			metaCerrada.position(game.at(x, y))
-		}
-		else if (tipo == 10) {                        // 10 = Meta falsa (lleva a n4)
-			const metaFalsa = new MetaFalsa()
-			game.addVisual(metaFalsa)
-			metaFalsa.position(game.at(x, y))
-	    }
-		else if (tipo == 11) {
-			const pared = new Pared1()
-			game.addVisual(pared)
-			pared.position(game.at(x, y))
-		}
-		else if (tipo == 12) {
-			const pared = new Pared2()
-			game.addVisual(pared)
-			pared.position(game.at(x, y))
-		}
-		else if (tipo == 13) {
-			const pared = new Pared3()
-			game.addVisual(pared)
-			pared.position(game.at(x, y))
-		}
+	}
+
+	method crearSoldado() {
+		const enemigo = new Soldado(direccionMirando = haciaLaIzquierda)
+		enemigo.patrullar()
+		enemigo.vigilar(ghost)
+		return enemigo
+	}
+
+	method crearJuggernaut() {
+		const juggernaut = new Juggernaut(direccionMirando = haciaLaDerecha)
+		juggernaut.patrullar()
+		juggernaut.vigilar(ghost)
+		return juggernaut
 	}
 
 

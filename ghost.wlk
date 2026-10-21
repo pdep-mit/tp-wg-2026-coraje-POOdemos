@@ -12,11 +12,17 @@ class Ghost inherits Personaje{
     var aPresionado = false
     var dPresionado = false
     var shiftPresionado = false
+	var invisible = false
+
 
 	var property tienePlano = false
 	var property tieneLlave = false
 
+
+	method traspabable() = false
+
 	method actualizarImagen() {
+		self.actualizarVisibilidad()
 		if (vivo) {
 			if (self.teclaMovimientoSeleccionada()) {
 				self.cambiarImagen(self.rutaImagenMovimiento())
@@ -120,4 +126,12 @@ class Ghost inherits Personaje{
 		estadoGhost.cambiarAMuerto()
 		vida.cambiarAMuerto()
   	}
+
+
+	method esInvisible() = invisible
+
+	method actualizarVisibilidad() {
+		invisible = game.getObjectsIn(self.position()).any({ obj => obj.esArbusto() })
+	}
+
 }

@@ -1,6 +1,6 @@
 # Wollok Game: Título de juego
 
-**Grupo:** Nombre de Grupo
+**Grupo:** POOdemos
 
 **Integrantes:**
 - Matias Joaquin Bolivio

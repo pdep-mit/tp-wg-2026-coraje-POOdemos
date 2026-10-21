@@ -4,7 +4,7 @@ import wollok.game.*
 class Personaje {
 	var property position = game.origin()
 
-	
+	method esArbusto() = false
 
 	var property velocidad = caminar
 	

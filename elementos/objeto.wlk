@@ -1,6 +1,8 @@
 class Objeto {
   var property position = game.origin()
 
+  method esArbusto() = false
+
   method nombreImagen() = "Objeto"
 
   method image() = "objetos/" + self.nombreImagen() + ".png"
@@ -10,4 +12,5 @@ class Objeto {
   method hacerSonido() {}
   
   method esEnemigo() = false
+
 }

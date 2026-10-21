@@ -53,7 +53,8 @@ class Soldado inherits Personaje{
     method detectoA(personaje) {
         if (self.position().distance(personaje.position()) < self.rangoVision()
         and direccionMirando.puedeVer(self, self.position(), personaje.position())
-        and not self.hayObjetoEnMedio(personaje.position())) {
+        and not self.hayObjetoEnMedio(personaje.position()) 
+        and not personaje.esInvisible()){
         self.modoAlerta(personaje)
         }
     }
