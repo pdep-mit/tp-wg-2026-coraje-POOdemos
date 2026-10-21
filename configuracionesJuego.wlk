@@ -15,6 +15,7 @@ object config {
 	method alturaDelSuelo() = 0
 
 	var property ghost = new Ghost(direccionMirando = haciaAbajo)
+	var musica = null
 
 	method configurarJuego() {
 		game.title("Nombre del juego")
@@ -26,12 +27,13 @@ object config {
 		game.width(self.anchoMaximo())
 
 		self.iniciarPartida()
-
-
+ 		self.iniciarMusica()
 	}
 
 	// Se llama al empezar y cada vez que se reinicia
 	method iniciarPartida() {
+
+
 		ghost = new Ghost(direccionMirando = haciaAbajo)
 		ghost.configurarTeclas()
 
@@ -52,6 +54,8 @@ object config {
 	}
 
 	method reiniciarPartida(){
+    musica.stop()
+ 		self.iniciarMusica()
 		indiceActual = 0
 		nivelActual = n1
 		game.clear()
@@ -61,5 +65,11 @@ object config {
 		nivelActual = nivel
 		game.clear()
 		self.iniciarPartida()
+	}
+
+	method iniciarMusica(){
+    musica = game.sound("sonidos/musica.ogg")
+		musica.shouldLoop(true)
+		musica.play()
 	}
 }
