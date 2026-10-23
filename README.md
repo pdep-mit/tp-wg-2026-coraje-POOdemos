@@ -1,4 +1,4 @@
-# Wollok Game: Título de juego
+# Wollok Game: Wollok Gear Solid
 
 **Grupo:** POOdemos
 
@@ -24,11 +24,23 @@ Recuerden que para cada checkpoint hay [expectativas mínimas](https://docs.goog
 
 ## Objetivo
 
-TODO
+La mision de Ghost es encontrar los planos y escapar vivo
 
 ## Controles
 
-TODO
+E = Empezar la partida
+C = Cambiar la dificultad (Solo desde el menu)
+W = Cambiar direccion hacia arriba
+A = Cambiar direccion hacia la izquierda
+S = Cambiar direccion hacia abajo
+D = Cambiar direccion hacia la derecha
+W (mantener) = Caminar hacia arriba
+A (mantener) = Caminar hacia la izquierda
+S (mantener) = Caminar hacia abajo
+D (mantener) = Caminar hacia la derecha
+Shift (mantener con WASD) = Correr
+Z = Matar enemigo cuerpo a cuerpo (solo si el jugador tiene arma)
+R = Reiniciar (solo cuando el jugador muere)
 
 # Explicaciones
 

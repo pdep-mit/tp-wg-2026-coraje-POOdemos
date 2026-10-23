@@ -3,6 +3,8 @@ import movimientos.*
 import partida.*
 
 class Soldado inherits Personaje{
+    const id
+
     override method sujeto() = 'Soldado'
 
     method esEnemigo() = true
@@ -11,13 +13,27 @@ class Soldado inherits Personaje{
     
     method traspasable() = true
 
-    method rangoVision() = 5 // Rango de vision: A cuantos bloques de distancia te puede ver
+    method rangoVision() = partida.dificultad().visionEnemigos() // Rango de vision: A cuantos bloques de distancia te puede ver
+
+    const patronMovimiento
+
+    var indicePatronMovimiento = 0
+
+    method siguienteDireccion(){
+        if(indicePatronMovimiento < patronMovimiento.direcciones().size()-1  ){
+            indicePatronMovimiento+=1
+           
+        }
+        else indicePatronMovimiento = 0
+
+        return patronMovimiento.direcciones().get(indicePatronMovimiento)
+    }
 
     method patrullar(){
         
-        partida.cadaMs(5000,"cambiarDireccionSoldado",{
+        partida.cadaMs(partida.dificultad().velocidadMovimientoEnemigos()*patronMovimiento.pasos() + 5000,"cambiarDireccionSoldado"+id,{
             if (vivo) {
-                direccionMirando = [haciaAbajo,haciaArriba,haciaLaDerecha,haciaLaIzquierda].anyOne()
+                direccionMirando = self.siguienteDireccion()
 
                 game.schedule(3000, { => self.avanzar() })
 
@@ -32,12 +48,12 @@ class Soldado inherits Personaje{
 
             var pasosDados = 0
 
-            partida.cadaMs(300, "pasosSoldado", {
-                if (vivo and pasosDados < 4) {
+            partida.cadaMs(partida.dificultad().velocidadMovimientoEnemigos(), "pasosSoldado"+id, {
+                if (vivo and pasosDados < patronMovimiento.pasos()) {
                     movimiento.mover(self)
                     pasosDados += 1
                 } else {
-                    game.removeTickEvent("pasosSoldado")
+                    game.removeTickEvent("pasosSoldado"+id)
                     if (vivo) self.quedarseQuieto()
                 }
             })
@@ -45,7 +61,7 @@ class Soldado inherits Personaje{
     }
 
     method vigilar(personaje) {
-        partida.cadaMs(200, "observarEnemigo", {
+        partida.cadaMs(200, "observarEnemigo"+id, {
             if (vivo) self.detectoA(personaje)
         })
     }
@@ -113,3 +129,9 @@ class Soldado inherits Personaje{
     }
 
 }
+
+class PatronMovimiento {
+    const property direcciones
+    const property pasos
+}
+

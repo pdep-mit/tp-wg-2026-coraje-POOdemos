@@ -6,7 +6,8 @@ import UI.indicadorCuchillo.*
 
 object partida {
 	var property pausada = false
-
+	var property dificultad = null
+	 
 	method pausar() {
 		pausada = true
 	}
@@ -45,6 +46,9 @@ object partida {
 		indicadorCuchillo.reiniciar()
 		pausada = false
 		config.reiniciarPartida()
+	}
+	method seleccionarDificultad(dificultadSeleccionada){
+		dificultad = dificultadSeleccionada
 	}
 }
 

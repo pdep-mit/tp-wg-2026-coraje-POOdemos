@@ -4,25 +4,26 @@ import niveles.nivel.Nivel
 object n2 inherits Nivel(mapa =  [
 
 		[11,11,11,11,11,11,11,11,11,11,9,11,11,11,11],
-		[19,8,0,0,0,1,1,1,14,0,0,2,0,0,20],
-		[19,1,1,1,0,17,1,1,14,1,1,1,1,0,20],
-		[19,2,0,0,0,1,10,1,14,0,0,0,0,0,20],
-		[19,0,1,1,1,1,0,1,14,0,1,1,1,1,20],
+		[19,8,0,0,24,1,1,1,14,0,0,2,0,0,20],
+		[19,1,1,1,0,17,1,1,14,1,13,11,1,0,20],
+		[19,24,0,0,0,15,10,1,14,0,0,0,0,0,20],
+		[19,0,11,12,13,16,0,1,14,0,1,1,1,1,20],
 		[19,0,0,0,0,0,0,1,0,0,17,17,17,17,20],
 		[19,0,1,1,1,0,0,17,17,0,18,0,0,0,20],
-		[19,11,12,11,11,0,11,11,11,1,1,1,1,0,20],
+		[19,11,12,11,11,0,11,11,11,12,13,12,1,0,20],
 		[19,3,0,0,0,0,0,0,14,1,0,0,2,0,20],
 		[19,0,0,0,0,0,0,0,14,1,10,1,1,1,20]
 
 	],ancho = 15, alto = 10){
-}    // Ref :
+}    
+    // Ref :
     // 1 = Barril
-    // 2 = Enemigo
+    // 2 = Enemigo patron horizontal con 8 bloques
     // 3 = Ghost
     // 4 = Plano
     // 5 = Trampa
     // 6 = Meta
-    // 7 = Juggernaut
+    // 7 = Juggernaut patron horizontal con 8 bloques
     // 8 = Llave
     // 9 = Meta Cerrada
     // 10 = Nivel trampa
@@ -37,3 +38,6 @@ object n2 inherits Nivel(mapa =  [
     // 19 = pared izquierda
     // 20 = pared derecha
     // 21 = Meta final
+    // 22 = Enemigo patron vertical 8 bloques
+    // 23 = Enemigo patron horizontal 4 bloques
+    // 24 = Enemigo patron vertical 4 bloques

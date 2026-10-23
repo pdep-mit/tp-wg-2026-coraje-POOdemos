@@ -1,3 +1,4 @@
+import partida.*
 import juggernaut.*
 import UI.vida.*
 import UI.fondo.*
@@ -24,19 +25,21 @@ class Nivel {
 	const property alto
 	const property mapa
 
+	var cantidadSoldados = 0
+
 	var ghost = null
 
 	method crearObjeto(tipo) {
 		if (tipo == 1) return new Barril()
-		if (tipo == 2) return self.crearSoldado()
+		if (tipo == 2) return self.crearSoldado([haciaLaDerecha,haciaLaIzquierda],8)
 		if (tipo == 3) return ghost
 		if (tipo == 4) return new Plano()
 		if (tipo == 5) return new Trampa()
 		if (tipo == 6) return new Meta()
-		if (tipo == 7) return self.crearJuggernaut()
+		if (tipo == 7) return self.crearJuggernaut([haciaLaDerecha,haciaLaIzquierda],8)
 		if (tipo == 8) return new Llave()
 		if (tipo == 9) return new MetaCerrada()
-		if (tipo == 10) return new MetaFalsa()
+		if (tipo == 10 and partida.dificultad().metasFalsas()) return new MetaFalsa()
 		if (tipo == 11) return new Pared(imagen='Pared1')
 		if (tipo == 12) return new Pared(imagen='Pared2')
 		if (tipo == 13) return new Pared(imagen='Pared3')
@@ -44,10 +47,13 @@ class Nivel {
 		if (tipo == 15) return new Pared(imagen='Pared5')
 		if (tipo == 16) return new Pared(imagen='Pared6')
 		if (tipo == 17) return new Arbusto()
-		if (tipo == 18) return new Cuchillo()
+		if (tipo == 18 and partida.dificultad().arma()) return new Cuchillo()
 		if (tipo == 19) return new Pared(imagen='Pared7')   // nuevo: medianera izquierda
-    if (tipo == 20) return new Pared(imagen='Pared8')   // nuevo: medianera derecha
+    	if (tipo == 20) return new Pared(imagen='Pared8')   // nuevo: medianera derecha
 		if (tipo == 21) return new MetaFinal()
+		if (tipo == 22) return self.crearSoldado([haciaArriba,haciaAbajo],8)
+		if (tipo == 23) return self.crearSoldado([haciaLaDerecha,haciaLaIzquierda],4)
+		if (tipo == 24) return self.crearSoldado([haciaArriba,haciaAbajo],4)
 		return null
 	}
 
@@ -83,17 +89,19 @@ class Nivel {
 		}
 	}
 
-	method crearSoldado() {
-		const enemigo = new Soldado(direccionMirando = haciaLaIzquierda)
+	method crearSoldado(direcciones,pasos) {
+		const enemigo = new Soldado(id=cantidadSoldados,direccionMirando = haciaLaIzquierda,patronMovimiento = new PatronMovimiento(direcciones = direcciones, pasos = pasos))
 		enemigo.patrullar()
 		enemigo.vigilar(ghost)
+		cantidadSoldados +=1
 		return enemigo
 	}
 
-	method crearJuggernaut() {
-		const juggernaut = new Juggernaut(direccionMirando = haciaLaDerecha)
+	method crearJuggernaut(direcciones,pasos) {
+		const juggernaut = new Juggernaut(id=cantidadSoldados,direccionMirando = haciaLaDerecha,patronMovimiento = new PatronMovimiento(direcciones = direcciones, pasos = pasos))
 		juggernaut.patrullar()
 		juggernaut.vigilar(ghost)
+		cantidadSoldados +=1
 		return juggernaut
 	}
 

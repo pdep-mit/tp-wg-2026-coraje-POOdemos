@@ -13,15 +13,15 @@ object n3 inherits Nivel(mapa =  [
 		[0,3,0,0,0,5,0,11,12,13,0,0,0,0,0],
 		[0,0,0,0,0,0,0,0,0,0,0,17,0,0,0]
 	],ancho = 15, alto = 10){
-
-}    // Ref :
+}   
+    // Ref :
     // 1 = Barril
-    // 2 = Enemigo
+    // 2 = Enemigo patron horizontal con 8 bloques
     // 3 = Ghost
     // 4 = Plano
     // 5 = Trampa
     // 6 = Meta
-    // 7 = Juggernaut
+    // 7 = Juggernaut patron horizontal con 8 bloques
     // 8 = Llave
     // 9 = Meta Cerrada
     // 10 = Nivel trampa
@@ -32,5 +32,8 @@ object n3 inherits Nivel(mapa =  [
     // 15 = Pared 5
     // 16 = Pared 6
     // 17 = Arbusto
-    // 18 = Meta final
-    // 19 = Cuchillo
+    // 18 = Cuchillo
+    // 19 = pared izquierda
+    // 20 = pared derecha
+    // 21 = Meta final
+    // 22 = Enemigo patron vertical 8 bloques

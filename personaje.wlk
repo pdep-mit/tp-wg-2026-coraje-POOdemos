@@ -50,51 +50,62 @@ class Personaje {
 	}
 }
 
-object haciaArriba {
+class Direccion{
+	method nombre()
 
-	method puedeVer(soldado,miPos, otroPos) {
+	method puedeVer(soldado,miPos,otraPos)
+
+	method posicionSiguiente(posicion)
+}
+
+object haciaArriba inherits Direccion{
+
+	override method puedeVer(soldado,miPos, otroPos) {
         return miPos.y() < otroPos.y() and miPos.x() == otroPos.x()
     }
 
-	method nombre() = "Arriba"
-	method posicionSiguiente(posicion) = posicion.up(1)
+	override method nombre() = "Arriba"
+	override method posicionSiguiente(posicion) = posicion.up(1)
 }
 
-object haciaAbajo {
-	method puedeVer(soldado,miPos, otroPos) {
+object haciaAbajo inherits Direccion{
+	override method puedeVer(soldado,miPos, otroPos) {
         return miPos.y() > otroPos.y() and miPos.x() == otroPos.x()
     }
 
-	method nombre() = "Abajo"
-	method posicionSiguiente(posicion) = posicion.down(1)
+	override method nombre() = "Abajo"
+	override method posicionSiguiente(posicion) = posicion.down(1)
 }
 
-object haciaLaDerecha {
-	method puedeVer(soldado,miPos, otroPos) {
+object haciaLaDerecha inherits Direccion{
+	override method puedeVer(soldado,miPos, otroPos) {
         return miPos.x() < otroPos.x() and miPos.y() == otroPos.y()
     }
 
-	method nombre() = "Derecha"
-	method posicionSiguiente(posicion) = posicion.right(1)
+	override method nombre() = "Derecha"
+	override method posicionSiguiente(posicion) = posicion.right(1)
 }
 
-object haciaLaIzquierda {
-	method puedeVer(soldado,miPos, otroPos) {
+object haciaLaIzquierda inherits Direccion{
+	override method puedeVer(soldado,miPos, otroPos) {
         return miPos.x() > otroPos.x() and miPos.y() == otroPos.y()
     }
 
-	method nombre() = "Izquierda"
-	method posicionSiguiente(posicion) = posicion.left(1)
+	override method nombre() = "Izquierda"
+	override method posicionSiguiente(posicion) = posicion.left(1)
 }
 
-object caminar{
-	method nombre() = 'Caminar'
-	const property velocidad = 300
+
+class Velocidad{
+	method nombre()
+	const property velocidad
+}
+object caminar inherits Velocidad(velocidad = 300){
+	override method nombre() = 'Caminar'
 }
 
-object correr{
-	method nombre() = 'Correr'
-	const property velocidad = 150
+object correr inherits Velocidad(velocidad = 150){
+	override method nombre() = 'Correr'
 }
 
 

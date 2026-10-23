@@ -15,13 +15,14 @@ class Ghost inherits Personaje{
     var shiftPresionado = false
 	var invisible = false
 
-
 	var property tienePlano = false
 	var property tieneLlave = false
 	var property tieneCuchillo = false
 
 
 	method traspasable() = false
+
+	
 
 	method actualizarImagen() {
 		self.actualizarVisibilidad()
@@ -77,7 +78,7 @@ class Ghost inherits Personaje{
 
 	method iniciarMovimiento() {
     	partida.cadaMs(
-        	(self.velocidad().velocidad()),"moverGhost",{ 
+        	(self.velocidad().velocidad()*partida.dificultad().velocidadMovimientoJugador()),"moverGhost",{ 
             	if (self.teclaMovimientoSeleccionada()) movimiento.mover(self)
 				else self.quedarseQuieto()
         	}

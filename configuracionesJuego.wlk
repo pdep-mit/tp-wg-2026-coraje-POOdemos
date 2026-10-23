@@ -6,6 +6,7 @@ import niveles.n2.n2
 import niveles.n3.n3
 import UI.indicadorLlave.*
 import UI.indicadorPlano.*
+import UI.menuPrincipal.menu
 
 object config {
 	var property nivelActual = n1
@@ -16,6 +17,7 @@ object config {
 	method anchoMaximo() = nivelActual.ancho()
 	method alturaDelSuelo() = 0
 
+
 	var property ghost = new Ghost(direccionMirando = haciaAbajo)
 	var musica = null
 
@@ -23,7 +25,7 @@ object config {
 	var property estadoCuchillo = false
 
 	method configurarJuego() {
-		game.title("Nombre del juego")
+		game.title("Wollok Gear Solid")
 		game.cellSize(64)
 
 		// Tener muy en cuenta que las coordenadas van de 0 a [tamaño definido - 1]
@@ -31,7 +33,9 @@ object config {
 		game.height(self.alturaMaxima()+2)
 		game.width(self.anchoMaximo())
 
-		self.iniciarPartida()
+
+		menu.mostrarMenu()
+
  		self.iniciarMusica()
 	}
 
@@ -77,8 +81,9 @@ object config {
 	}
 
 	method iniciarMusica(){
-    musica = game.sound("sonidos/musica.ogg")
+    	musica = game.sound("sonidos/musica.ogg")
 		musica.shouldLoop(true)
 		musica.play()
 	}
+
 }

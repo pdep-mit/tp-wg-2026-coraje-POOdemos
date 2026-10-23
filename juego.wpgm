@@ -2,7 +2,7 @@ import wollok.game.*
 import configuracionesJuego.*
 
 
-program NombreDeJuego {
+program WollokGearSolid {
 
 	config.configurarJuego()
 	game.start()
