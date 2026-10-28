@@ -3,7 +3,7 @@ import configuracionesJuego.*
 import UI.indicadorPlano.*
 import UI.indicadorLlave.*
 import UI.indicadorCuchillo.*
-
+import UI.menuPrincipal.*
 object partida {
 	var property pausada = false
 	var property dificultad = null
@@ -33,11 +33,13 @@ object partida {
 		self.pausar()
 		game.say(personaje, "¡Morí!")
 		game.addVisual(pantallaDerrota)
+		keyboard.m().onPressDo({=> menu.mostrarMenu()})
 	}
 
 	method terminarConVictoria(personaje){
 		self.pausar()
 		game.addVisual(pantallaEscape)
+		game.schedule(5000, { => menu.mostrarMenu()})
 	}
 
 	method reiniciar() {

@@ -33,10 +33,10 @@ object config {
 		game.height(self.alturaMaxima()+2)
 		game.width(self.anchoMaximo())
 
-
+		self.iniciarMusica()
 		menu.mostrarMenu()
 
- 		self.iniciarMusica()
+ 		
 	}
 
 	// Se llama al empezar y cada vez que se reinicia

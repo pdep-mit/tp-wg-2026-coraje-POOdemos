@@ -25,6 +25,7 @@ object menu {
     }
 
     method mostrarMenu() {
+        game.clear()
         game.boardGround('UI/Menu.gif')
 
         game.addVisual(textoTitulo)
@@ -37,7 +38,7 @@ object menu {
             game.boardGround('UI/FondoPartida.png') 
             partida.seleccionarDificultad(dificultadSeleccionada)
             config.iniciarPartida()
-            
+            partida.reiniciar()
         })
 
         keyboard.c().onPressDo({
