@@ -9,3 +9,10 @@ program WollokGearSolid {
 
 
 }
+
+object juego{
+	method iniciar(){
+		config.configurarJuego()
+		game.start()
+	}
+}

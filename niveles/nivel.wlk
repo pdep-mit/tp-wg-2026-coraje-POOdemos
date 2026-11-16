@@ -12,6 +12,7 @@ import elementos.trampa.Trampa
 import elementos.pared.Pared
 import elementos.llave.Llave
 import elementos.cuchillo.Cuchillo
+import elementos.caja.Caja
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -54,6 +55,7 @@ class Nivel {
 		if (tipo == 22) return self.crearSoldado([haciaArriba,haciaAbajo],8)
 		if (tipo == 23) return self.crearSoldado([haciaLaDerecha,haciaLaIzquierda],4)
 		if (tipo == 24) return self.crearSoldado([haciaArriba,haciaAbajo],4)
+		if (tipo == 25) return new Caja()
 		return null
 	}
 
@@ -76,7 +78,7 @@ class Nivel {
 
         game.addVisual(indicadorPlano)
         game.addVisual(indicadorLlave)
-		game.addVisual(indicadorCuchillo)
+		if (partida.dificultad().arma()) game.addVisual(indicadorCuchillo)
         game.addVisual(estadoGhost)
         game.addVisual(vida)
     }

@@ -34,8 +34,7 @@ object menu {
 
 
         keyboard.e().onPressDo({
-            game.clear()
-            game.boardGround('UI/FondoPartida.png') 
+            game.clear() 
             partida.seleccionarDificultad(dificultadSeleccionada)
             config.iniciarPartida()
             partida.reiniciar()

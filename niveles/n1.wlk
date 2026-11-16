@@ -14,6 +14,7 @@ object n1 inherits Nivel(mapa =  [
 		[0,0,1,0,0,0,0,0,0,14,17,0,0,0,1]
 	],ancho = 15, alto = 10){
 
+    method fondo() = 'UI/Fondos/Exterior.png'
 }
 
     // Ref :
