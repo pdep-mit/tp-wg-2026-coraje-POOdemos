@@ -16,7 +16,6 @@ object n1 inherits Nivel(mapa =  [
 
     method fondo() = 'UI/Fondos/Exterior.png'
 }
-
     // Ref :
     // 1 = Barril
     // 2 = Enemigo patron horizontal con 8 bloques
@@ -41,3 +40,5 @@ object n1 inherits Nivel(mapa =  [
     // 21 = Meta final
     // 22 = Enemigo patron vertical 8 bloques
     // 23 = Enemigo patron horizontal 4 bloques
+    // 24 = Enemigo patron vertical 4 bloques
+    // 25 = Caja

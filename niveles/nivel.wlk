@@ -12,6 +12,7 @@ import elementos.trampa.Trampa
 import elementos.pared.Pared
 import elementos.llave.Llave
 import elementos.cuchillo.Cuchillo
+import elementos.vacio.Vacio
 import elementos.caja.Caja
 import soldado.*
 import wollok.game.*
@@ -40,7 +41,10 @@ class Nivel {
 		if (tipo == 7) return self.crearJuggernaut([haciaLaDerecha,haciaLaIzquierda],8)
 		if (tipo == 8) return new Llave()
 		if (tipo == 9) return new MetaCerrada()
-		if (tipo == 10 and partida.dificultad().metasFalsas()) return new MetaFalsa()
+		if (tipo == 10) {
+			if (partida.dificultad().metasFalsas()) return new MetaFalsa()
+			else return new Pared(imagen='Pared1')
+		}
 		if (tipo == 11) return new Pared(imagen='Pared1')
 		if (tipo == 12) return new Pared(imagen='Pared2')
 		if (tipo == 13) return new Pared(imagen='Pared3')
@@ -56,6 +60,8 @@ class Nivel {
 		if (tipo == 23) return self.crearSoldado([haciaLaDerecha,haciaLaIzquierda],4)
 		if (tipo == 24) return self.crearSoldado([haciaArriba,haciaAbajo],4)
 		if (tipo == 25) return new Caja()
+		if (tipo == 26) return self.crearJuggernaut([haciaAbajo,haciaArriba],4)
+		if (tipo == 27) return new Vacio()
 		return null
 	}
 

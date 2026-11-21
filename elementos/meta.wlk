@@ -24,6 +24,7 @@ class MetaFalsa inherits Meta {
 
   override method interactuarCon(personaje) {
     config.irANivel(n4)
+    game.say(personaje,"¡Es una trampa!")
   }
 }
 
