@@ -11,7 +11,7 @@ import UI.indicadorPlano.*
 import UI.menuPrincipal.menu
 
 object config {
-	var property nivelActual = n4
+	var property nivelActual = n1
 	const property listaNiveles = [n1,n2,n3,n4,n5]
 	var indiceActual = 0
 	method mapa() = nivelActual.mapa()
@@ -72,7 +72,7 @@ object config {
     	musica.stop()
  		self.iniciarMusica()
 		indiceActual = 0
-		nivelActual = n4
+		nivelActual = n1
 		estadoCuchillo = false
 		game.clear()
 		self.iniciarPartida()
