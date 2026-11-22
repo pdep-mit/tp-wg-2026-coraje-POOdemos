@@ -5,13 +5,14 @@ import niveles.n1.n1
 import niveles.n2.n2
 import niveles.n3.n3
 import niveles.n4.n4
+import niveles.n5.n5
 import UI.indicadorLlave.*
 import UI.indicadorPlano.*
 import UI.menuPrincipal.menu
 
 object config {
-	var property nivelActual = n1
-	const property listaNiveles = [n1,n2,n3]
+	var property nivelActual = n4
+	const property listaNiveles = [n1,n2,n3,n4,n5]
 	var indiceActual = 0
 	method mapa() = nivelActual.mapa()
 	method alturaMaxima() = nivelActual.alto()
@@ -71,7 +72,7 @@ object config {
     	musica.stop()
  		self.iniciarMusica()
 		indiceActual = 0
-		nivelActual = n1
+		nivelActual = n4
 		estadoCuchillo = false
 		game.clear()
 		self.iniciarPartida()

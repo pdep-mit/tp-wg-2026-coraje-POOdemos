@@ -1,7 +1,7 @@
 import partida.*
 import elementos.objeto.*
 import configuracionesJuego.*
-import niveles.n4.n4
+import niveles.nTrampa.nTrampa
 
 
 class Meta inherits Objeto {
@@ -23,7 +23,7 @@ class MetaCerrada inherits Meta {
 class MetaFalsa inherits Meta {
 
   override method interactuarCon(personaje) {
-    config.irANivel(n4)
+    config.irANivel(nTrampa)
     game.say(personaje,"¡Es una trampa!")
   }
 }
