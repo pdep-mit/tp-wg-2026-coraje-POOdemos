@@ -1,6 +1,6 @@
 import debug.debug
 import wollok.game.*
-
+import movimientos.movimiento
 class Personaje {
 	var property position = game.origin()
 
@@ -11,6 +11,8 @@ class Personaje {
 	var property vivo = true
 
 	var imagenEvento = null
+	var apuntando = false
+	
 
 	var property direccionMirando
 
@@ -34,6 +36,7 @@ class Personaje {
 	}
 
 	method quedarseQuieto(){
+		if(!apuntando)
 		imagenEvento = null
 	}
 
@@ -48,11 +51,45 @@ class Personaje {
 	method mostrarPosicion() {
 		debug.say(self, "Posición: " + self.position())
 	}
+
+
+	    method hayObjetoEnMedio(posicionPersonaje) {
+        return self.verificarBloqueoPaso(self.position().x(), self.position().y(), posicionPersonaje)
+    }
+
+    method verificarBloqueoPaso(miradaX, miradaY, destino) {
+        if (miradaX == destino.x() and miradaY == destino.y()) {
+            return false
+        }
+
+        const difX = destino.x() - miradaX
+        const difY = destino.y() - miradaY
+        
+        var proxX = miradaX
+        var proxY = miradaY
+
+        if (difX.abs() > difY.abs()) {
+            proxX += if (difX > 0) 1 else -1
+        } else if (difY.abs() > difX.abs()) {
+            proxY += if (difY > 0) 1 else -1
+        } else {
+            proxX += if (difX > 0) 1 else -1
+            proxY += if (difY > 0) 1 else -1
+        }
+        
+        const posRevisada = game.at(proxX, proxY)
+        
+        if (posRevisada != destino and not movimiento.puedeMoverseA(posRevisada)) {
+            return true
+        }
+
+        return self.verificarBloqueoPaso(proxX, proxY, destino)
+    }
 }
 
 object haciaArriba {
 
-	method puedeVer(soldado,miPos, otroPos) {
+	method puedeVer(personaje,miPos, otroPos) {
         return miPos.y() < otroPos.y() and miPos.x() == otroPos.x()
     }
 
@@ -61,7 +98,7 @@ object haciaArriba {
 }
 
 object haciaAbajo {
-	method puedeVer(soldado,miPos, otroPos) {
+	method puedeVer(personaje,miPos, otroPos) {
         return miPos.y() > otroPos.y() and miPos.x() == otroPos.x()
     }
 
@@ -70,7 +107,7 @@ object haciaAbajo {
 }
 
 object haciaLaDerecha {
-	method puedeVer(soldado,miPos, otroPos) {
+	method puedeVer(personaje,miPos, otroPos) {
         return miPos.x() < otroPos.x() and miPos.y() == otroPos.y()
     }
 
@@ -79,7 +116,7 @@ object haciaLaDerecha {
 }
 
 object haciaLaIzquierda {
-	method puedeVer(soldado,miPos, otroPos) {
+	method puedeVer(personaje,miPos, otroPos) {
         return miPos.x() > otroPos.x() and miPos.y() == otroPos.y()
     }
 

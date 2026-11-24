@@ -1,3 +1,5 @@
+import UI.balas.*
+import UI.cargador.*
 import partida.*
 import juggernaut.*
 import UI.vida.*
@@ -6,6 +8,7 @@ import UI.estadoGhost.estadoGhost
 import UI.indicadorPlano.indicadorPlano
 import UI.indicadorLlave.indicadorLlave
 import UI.indicadorCuchillo.indicadorCuchillo
+import UI.pistola.indicadorPistola
 import elementos.plano.Plano
 import elementos.barril.Barril
 import elementos.trampa.Trampa
@@ -14,6 +17,7 @@ import elementos.llave.Llave
 import elementos.cuchillo.Cuchillo
 import elementos.vacio.Vacio
 import elementos.caja.Caja
+import elementos.municion.Municion
 import soldado.*
 import wollok.game.*
 import personaje.*
@@ -62,6 +66,7 @@ class Nivel {
 		if (tipo == 25) return new Caja()
 		if (tipo == 26) return self.crearJuggernaut([haciaAbajo,haciaArriba],4)
 		if (tipo == 27) return new Vacio()
+		if ((tipo == 28) and partida.dificultad().arma()) return new Municion()
 		return null
 	}
 
@@ -82,9 +87,10 @@ class Nivel {
         estadoGhost.reiniciar()
         vida.reiniciar()
 
+
         game.addVisual(indicadorPlano)
         game.addVisual(indicadorLlave)
-		if (partida.dificultad().arma()) game.addVisual(indicadorCuchillo)
+		if (partida.dificultad().arma()) {game.addVisual(indicadorCuchillo); game.addVisual(indicadorPistola); game.addVisual(cargador); game.addVisual(textoBalas)}
         game.addVisual(estadoGhost)
         game.addVisual(vida)
     }

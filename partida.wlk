@@ -1,3 +1,4 @@
+import UI.cargador.cargador
 import wollok.game.*
 import configuracionesJuego.*
 import UI.indicadorPlano.*
@@ -46,6 +47,7 @@ object partida {
 		indicadorPlano.reiniciar()
 		indicadorLlave.reiniciar()
 		indicadorCuchillo.reiniciar()
+		cargador.reiniciar()
 		pausada = false
 		config.reiniciarPartida()
 	}

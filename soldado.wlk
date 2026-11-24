@@ -82,38 +82,7 @@ class Soldado inherits Personaje{
         personaje.morir()
 	}
 
-    method hayObjetoEnMedio(posicionPersonaje) {
-        return self.verificarBloqueoPaso(self.position().x(), self.position().y(), posicionPersonaje)
-    }
 
-    method verificarBloqueoPaso(miradaX, miradaY, destino) {
-        if (miradaX == destino.x() and miradaY == destino.y()) {
-            return false
-        }
-
-        const difX = destino.x() - miradaX
-        const difY = destino.y() - miradaY
-        
-        var proxX = miradaX
-        var proxY = miradaY
-
-        if (difX.abs() > difY.abs()) {
-            proxX += if (difX > 0) 1 else -1
-        } else if (difY.abs() > difX.abs()) {
-            proxY += if (difY > 0) 1 else -1
-        } else {
-            proxX += if (difX > 0) 1 else -1
-            proxY += if (difY > 0) 1 else -1
-        }
-        
-        const posRevisada = game.at(proxX, proxY)
-        
-        if (posRevisada != destino and not movimiento.puedeMoverseA(posRevisada)) {
-            return true
-        }
-
-        return self.verificarBloqueoPaso(proxX, proxY, destino)
-    }
     
     method interactuarCon(personaje) {
         if (vivo) self.modoAlerta(personaje)

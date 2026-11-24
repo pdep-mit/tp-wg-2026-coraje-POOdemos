@@ -3,6 +3,7 @@ import UI.indicadorLlave.indicadorLlave
 import UI.indicadorCuchillo.indicadorCuchillo
 import UI.vida.vida
 import UI.estadoGhost.estadoGhost
+import UI.cargador.cargador
 import personaje.*
 import movimientos.*
 import partida.*
@@ -19,14 +20,14 @@ class Ghost inherits Personaje{
 	var property tieneLlave = false
 	var property tieneCuchillo = false
 
+	method esEnemigo() = false
 
 	method traspasable() = false
 
-	
 
 	method actualizarImagen() {
 		self.actualizarVisibilidad()
-		if (vivo) {
+		if (vivo && !apuntando) {
 			if (self.teclaMovimientoSeleccionada()) {
 				self.cambiarImagen(self.rutaImagenMovimiento())
 			} else {
@@ -53,6 +54,9 @@ class Ghost inherits Personaje{
 		keyboard.shift().onPressDo({ shiftPresionado = true; self.correr() })
 		keyboard.shift().onReleaseDo({ shiftPresionado = false; self.caminar() })
 		
+		game.onClickDo({ posicion =>
+    		if (vivo) self.disparar(posicion)
+		})
 
 		keyboard.z().onPressDo({self.matar()})
 
@@ -124,6 +128,7 @@ class Ghost inherits Personaje{
 	}
 
 	method morir() {
+		apuntando = false
   		if (vivo) {
   			vivo = false
   			partida.terminarConDerrota(self)
@@ -155,6 +160,37 @@ class Ghost inherits Personaje{
 			game.say(self,"Necesito un arma")
 		}
 
+	}
+
+	method disparar(posicion){
+		if(cargador.tieneBalas()){
+			const enemigo = game.getObjectsIn(posicion).findOrDefault({ obj => obj.esEnemigo() }, null)
+			game.sound('sonidos/arma_soldado.mp3').play()
+			self.cambiarImagen('personajes/Ghost/Apuntar/'+direccionMirando.nombre()+'.gif')
+
+			apuntando = true
+
+			game.schedule(850, {
+				apuntando = false
+			})
+    		if (enemigo != null) {
+        		if(direccionMirando.puedeVer(self,self.position(),enemigo.position())
+				and self.position().distance(enemigo.position()) < 4
+				and not self.hayObjetoEnMedio(enemigo.position())
+				and enemigo.puedeMorir() 
+				){
+					enemigo.morir()
+				}
+    		}
+			cargador.restarBala()
+		}
+		else game.sound('sonidos/arma_descargada.mp3').play()
+		
+		
+	}
+
+	method agarrarMunicion(){
+		cargador.cargarBala()
 	}
 
 	method esInvisible() = invisible

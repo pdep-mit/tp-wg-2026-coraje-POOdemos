@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-for carpeta in ["."]:
+for carpeta in ["assets/personajes/Ghost/Apuntar/arriba"]:
     for archivo in os.listdir(carpeta):
         if archivo.endswith(".png"):
             img = Image.open(f"{carpeta}/{archivo}")

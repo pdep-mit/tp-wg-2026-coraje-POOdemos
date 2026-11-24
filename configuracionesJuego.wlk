@@ -11,7 +11,7 @@ import UI.indicadorPlano.*
 import UI.menuPrincipal.menu
 
 object config {
-	var property nivelActual = n1
+	var property nivelActual = n3
 	const property listaNiveles = [n1,n2,n3,n4,n5]
 	var indiceActual = 0
 	method mapa() = nivelActual.mapa()
@@ -55,7 +55,6 @@ object config {
 		game.onCollideDo(ghost, {
 			elementoQueChoque => elementoQueChoque.interactuarCon(ghost)
 		})
-		//game.boardGround("fondo.png")
 	}
 
 	method avanzarNivel(personaje){
@@ -72,7 +71,7 @@ object config {
     	musica.stop()
  		self.iniciarMusica()
 		indiceActual = 0
-		nivelActual = n1
+		nivelActual = n3
 		estadoCuchillo = false
 		game.clear()
 		self.iniciarPartida()
